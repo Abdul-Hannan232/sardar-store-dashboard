@@ -31,7 +31,8 @@ const ProductDetails = () => {
             <div className="flex-shrink-0 flex items-center justify-center h-auto">
               {data.image && data.image !== "" ? (
                 <img
-                  src={data.image}
+                  // src={data.image}
+                  src={data.image.replace("5055","4000")}
                   alt=""
                   // alt={data.title}
                   className="w-48  max-h-48 md:w-40  p-2"
@@ -43,7 +44,8 @@ const ProductDetails = () => {
                       <img
                         className="w-48  max-h-48 md:w-40 md:max-h-40 p-2"
                         key={i}
-                        src={file}
+                        // src={file}
+                        src={file.replace("5055","4000")}
                         alt=""
                       />
                     ))}

@@ -15,6 +15,9 @@ const useProductSubmit = (id, type) => {
   const [children, setChildren] = useState("");
   const [stock, setStock] = useState();
   const [price, setPrice] = useState();
+  const [price_usd, setPrice_usd] = useState();
+  const [promo_price_pkr, setPromo_price_pkr] = useState();
+  const [promo_price_usd, setPromo_price_usd] = useState();
   const [tag, setTag] = useState([]);
   const { isDrawerOpen, closeDrawer, setIsUpdate } = useContext(SidebarContext);
 
@@ -31,8 +34,8 @@ const useProductSubmit = (id, type) => {
 
   const onSubmit = (formData) => {
 
-    const result = data.find((parent) =>
-      formData?.parent?.toLowerCase() === parent.name.toLowerCase()
+    const result = data?.find((parent) =>
+      formData?.parent?.toLowerCase() === parent?.name.toLowerCase()
        
     );
 
@@ -50,6 +53,9 @@ const useProductSubmit = (id, type) => {
       parent: formData.parent,
       children: formData.children,
       price: formData.price,
+      price_usd: formData.price_usd,
+      promo_price_pkr: formData.promo_price_pkr,
+      promo_price_usd: formData.promo_price_usd,
       gallery: imageUrl.length > 1 ? JSON.stringify(imageUrl) : '[]',
       image: imageUrl.length === 1 ? imageUrl[0] : '',
       // image: typeof imageUrl === 'string' ? imageUrl : '',
@@ -58,7 +64,7 @@ const useProductSubmit = (id, type) => {
       stock: formData.stock,
       category_id: result.id,
     };
-    // console.log(productData);
+    console.log(productData);
 
     if (id) {
       ProductServices.updateProduct(id, productData)
@@ -94,8 +100,12 @@ const useProductSubmit = (id, type) => {
           // setValue("type", res.type);
           setValue("unit", res.unit);
           // setValue("quantity", res.quantity);
+          // setValue("salePrice", res.price);
           setValue("originalPrice", res.price);
-          setValue("salePrice", res.price);
+          setValue("price", res.price);
+          setValue("price_usd", res.price_usd);
+          setValue("promo_price_pkr", res.promo_price_pkr);
+          setValue("promo_price_usd", res.promo_price_usd);
           setTag(JSON.parse(res.tag));
           setImageUrl(res.image ? res.image : res.gallery);
         
@@ -118,9 +128,12 @@ const useProductSubmit = (id, type) => {
       setValue("unit");
       setValue("quantity");
       setValue("originalPrice");
-      setValue("salePrice");
+      // setValue("salePrice");
       setValue("stock");
       setValue("price");
+      setValue("price_usd");
+      setValue("promo_price_pkr");
+      setValue("promo_price_usd");
       setImageUrl("");
       setChildren("");
       setTag([]);
@@ -134,7 +147,11 @@ const useProductSubmit = (id, type) => {
       clearErrors("unit");
       clearErrors("quantity");
       clearErrors("originalPrice");
-      clearErrors("salePrice");
+      clearErrors("price");
+      // clearErrors("salePrice");
+      clearErrors("price_usd");
+      clearErrors("promo_price_pkr");
+      clearErrors("promo_price_usd");
       clearErrors("tax1");
       clearErrors("tax2");
       return;
@@ -158,6 +175,9 @@ const useProductSubmit = (id, type) => {
             // setValue("salePrice", res.price);
             setValue("stock", res.stock);
             setValue("price", res.price);
+            setValue("price_usd", res.price_usd);
+            setValue("promo_price_pkr", res.promo_price_pkr);
+            setValue("promo_price_usd", res.promo_price_usd); 
             setTag(JSON.parse(res.tag));
             setImageUrl(res.image ? [ res.image] : JSON.parse(res.gallery));
             setTitle(res.title);
@@ -192,7 +212,13 @@ const useProductSubmit = (id, type) => {
     stock,
     setStock,
     price,
-    setPrice
+    setPrice,
+    price_usd,
+    setPrice_usd,
+    promo_price_pkr,
+    setPromo_price_pkr,
+    promo_price_usd,
+    setPromo_price_usd,
   };
 };
 

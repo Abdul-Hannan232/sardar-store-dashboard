@@ -60,13 +60,14 @@ const ProductTable = ({ products }) => {
                 <Avatar
                  size="large"
                   className="hidden  mr-2 md:block bg-gray-50 shadow-none"
-                  src={product.image}
+                  // src={product.image}
+                  src={product.image.replace('5055', '4000')}
                   alt={product.title}
                 />) : ( <Avatar
                 size="large"
                  className="hidden  mr-2 md:block bg-gray-50 shadow-none"
-                //  src={JSON.parse(product.gallery)[0].replace('4000', '5055')}
-                 src={JSON.parse(product.gallery)[0]}
+                 src={JSON.parse(product.gallery)[0].replace('5055', '4000')}
+                //  src={JSON.parse(product.gallery)[0]}
                  alt={product.title}
                />
               )}

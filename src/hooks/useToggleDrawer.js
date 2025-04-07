@@ -14,7 +14,7 @@ const useToggleDrawer = () => {
   };
 
   const handleModalOpen = (id, title) => {
-    // console.log(id, title);
+    // console.log("handleModalOpen----- >",id, title);
     setServiceId(id);
     toggleModal();
     setTitle(title);
@@ -26,6 +26,7 @@ const useToggleDrawer = () => {
     }
   }, [isDrawerOpen]);
 
+  
   return {
     title,
     serviceId,

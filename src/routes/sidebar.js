@@ -6,7 +6,7 @@ import {
   FiCompass,
   // FiGift,
   FiList,
-  // FiSettings,
+  FiSettings,
   // FiSlack,
 } from 'react-icons/fi';
 /**
@@ -45,44 +45,22 @@ const sidebar = [
     name: 'Faq',
   },
 
-   // {
-  //   path: '/customers',
-  //   icon: FiUsers,
-  //   name: 'Customers',
-  // },
-  
-  // {
-  //   path: '/coupons',
-  //   icon: FiGift,
-  //   name: 'Coupons',
-  // },
-  // {
-  //   path: '/our-staff',
-  //   icon: FiUser,
-  //   name: 'Our Staff',
-  // },
-  // {
-  //   path: '/setting',
-  //   icon: FiSettings,
-  //   name: 'Setting',
-  // },
+  {
+    icon: FiSettings ,
+    name: 'Setting',
+    routes: [
+      // submenu
 
-  // {
-  //   icon: FiSlack,
-  //   name: 'Pages',
-  //   routes: [
-  //     // submenu
-
-  //     {
-  //       path: '/404',
-  //       name: '404',
-  //     },
-  //     {
-  //       path: '/coming-soon',
-  //       name: 'Coming Soon',
-  //     },
-  //   ],
-  // },
+      {
+        path: '/settings/banner',
+        name: 'Banner ',
+      },
+      {
+        path: '/settings/app-promotion',
+        name: 'App Promotion',
+      },
+    ],
+  },
 ];
 
 export default sidebar;

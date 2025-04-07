@@ -49,6 +49,9 @@ const OrderTable = ({ orders }) => {
             </TableCell>
 
             <TableCell>
+              <span className="text-sm"> {order.user.phone}</span>
+            </TableCell>
+            <TableCell>
               <span className="text-sm"> {order.user.email}</span>
             </TableCell>
 

@@ -21,7 +21,7 @@ const SidebarSubMenu = ({ route }) => {
           aria-haspopup="true"
         >
           <span className="inline-flex items-center">
-            <route.icon className="w-5 h-5" aria-hidden="true" />
+            {/* <route.icon className="w-5 h-5" aria-hidden="true" /> */}
             <span className="ml-4 mt-1">{route.name}</span>
             <span className="pl-4 mt-1">
               {open ? <IoChevronDownOutline /> : <IoChevronForwardOutline />}

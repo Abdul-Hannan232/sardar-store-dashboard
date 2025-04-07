@@ -4,6 +4,8 @@ import Faq from '../pages/Faq';
 // use lazy for better code splitting
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Products = lazy(() => import('../pages/Products'));
+const Banner = lazy(() => import('../pages/Banner'));
+const AppPromotion = lazy(() => import('../pages/AppPromotion'));
 const ProductDetails = lazy(() => import('../pages/ProductDetails'));
 const Category = lazy(() => import('../pages/Category'));
 // const Staff = lazy(() => import('../pages/Staff'));
@@ -62,40 +64,18 @@ const routes = [
   },
 
 
-  // {
-  //   path: '/customers',
-  //   component: Customers,
-  // },
-  
-  // {
-  //   path: '/customer-order/:id',
-  //   component: CustomerOrder,
-  // },
-  // {
-  //   path: '/our-staff',
-  //   component: Staff,
-  // },
   {
     path: '/order/:id',
     component: OrderInvoice,
   },
-  // {
-  //   path: '/coupons',
-  //   component: Coupons,
-  // },
-  // { path: '/setting', component: EditProfile },
-  // {
-  //   path: '/404',
-  //   component: Page404,
-  // },
-  // {
-  //   path: '/coming-soon',
-  //   component: ComingSoon,
-  // },
-  // {
-  //   path: '/edit-profile',
-  //   component: EditProfile,
-  // },
+  {
+   path: '/settings/banner',
+    component: Banner,
+  },
+  {
+    path: '/settings/app-promotion',
+    component: AppPromotion,
+  },
 ];
 
 export default routes;

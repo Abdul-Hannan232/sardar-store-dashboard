@@ -22,6 +22,7 @@ const InputValue = ({ register,required, maxValue, minValue, defaultValue, name,
         type={type}
         placeholder={placeholder}
         name={name}
+        min={1}
         className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 dark:bg-white border-transparent focus:bg-white"
       />
     </>

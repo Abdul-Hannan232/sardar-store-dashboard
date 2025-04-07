@@ -53,8 +53,8 @@ const CategoryTable = ({ categories }) => {
               <Avatar
                 size="large"
                 className="hidden mr-3 md:block bg-gray-50 p-1"
-                // src={parent.icon.replace("5055", "4000")}
-                src={parent.icon}
+                src={parent.icon.replace("5055", "4000")}
+                // src={parent.icon}
                 // src='http://localhost:5055/upload/furniture1.webp'
                 alt={parent.parent}
               />

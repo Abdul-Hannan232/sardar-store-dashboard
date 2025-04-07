@@ -61,7 +61,8 @@ const OrderInvoice = () => {
                   )}
                 </h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                  Cecilia Chapman, 561-4535 Nulla LA, <br /> United States 96522{" "}
+                Lahore, Punjab, 54000, <br /> Pakistan. {" "}
+                {" "}
                 </p>
               </div>
             </div>
@@ -74,6 +75,18 @@ const OrderInvoice = () => {
                   {data.createdAt !== undefined && (
                     <span>{dayjs(data?.createdAt).format("MMMM D, YYYY")}</span>
                   )}
+                </span>
+                <span className="text-sm text-gray-500 dark:text-gray-400 block">
+                 {data?.user?.name}
+                </span>
+                <div className="text-sm text-gray-500 dark:text-gray-400 block">
+                {data?.user?.email}
+                </div>
+                <span className="text-sm text-gray-500 dark:text-gray-400 block">
+                {data?.user?.address}
+                </span>
+                <span className="text-sm text-gray-500 dark:text-gray-400 block">
+                {data?.user?.phone}
                 </span>
               </div>
               <div className="mb-3 md:mb-0 lg:mb-0 flex flex-col">
@@ -170,14 +183,13 @@ const OrderInvoice = () => {
             document={<InvoiceForDownload data={data} />}
             fileName="Invoice"
           >
-           
-            {({ blob, url, loading, error }) => 
-          // console.log('>>>>>>>>>>>>',loading)
+            {({ blob, url, loading, error }) =>
+              // console.log('>>>>>>>>>>>>',loading)
               loading ? (
-                'Loading...'
+                "Loading..."
               ) : (
                 <button className="flex items-center text-sm leading-5 transition-colors duration-150 font-medium focus:outline-none px-5 py-2 rounded-md text-white  border border-transparent active:bg-green-600 base-bg-color focus:ring focus:ring-purple-300 w-auto cursor-pointer">
-                  Download Invoice{' '}
+                  Download Invoice{" "}
                   <span className="ml-2 text-base">
                     <IoCloudDownloadOutline />
                   </span>

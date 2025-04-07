@@ -3,9 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { Modal, ModalBody, ModalFooter, Button , ModalHeader} from '@windmill/react-ui';
 import { FiX, FiTrash2 } from 'react-icons/fi';
 
-// import UserServices from '../../services/UserServices';
-// import AdminServices from '../../services/AdminServices';
-// import CouponServices from '../../services/CouponServices';
 import ProductServices from '../../services/ProductServices';
 import CategoryServices from '../../services/CategoryServices';
 import { SidebarContext } from '../../context/SidebarContext';
@@ -13,6 +10,8 @@ import { notifySuccess, notifyError } from '../../utils/toast';
 import useToggleDrawer from '../../hooks/useToggleDrawer';
 import FaqServices from '../../services/FaqServices';
 import OrderServices from '../../services/OrderServices';
+import BannerServices from '../../services/BannerServices';
+import AppPromoServices from '../../services/AppPromoServices';
 
 const MainModal = ({ id, title }) => {
   const { isModalOpen, closeModal, setIsUpdate } = useContext(SidebarContext);
@@ -62,39 +61,28 @@ const MainModal = ({ id, title }) => {
       closeModal();
       setServiceId();
     }
+    if (location.pathname === '/settings/banner') {
+      BannerServices.deleteBanner(id)
+        .then((res) => {
+          setIsUpdate(true);
+          notifySuccess(res.message);
+        })
+        .catch((err) => notifyError(err.message));
+      closeModal();
+      setServiceId();
+    }
+    if (location.pathname === '/settings/app-promotion') {
+      AppPromoServices.deletePromoBanner(id)
+        .then((res) => {
+          setIsUpdate(true);
+          notifySuccess(res.message);
+        })
+        .catch((err) => notifyError(err.message));
+      closeModal();
+      setServiceId();
+    }
 
 
-    // if (location.pathname === '/customers') {
-    //   UserServices.deleteUser(id)
-    //     .then((res) => {
-    //       setIsUpdate(true);
-    //       notifySuccess(res.message);
-    //     })
-    //     .catch((err) => notifyError(err.message));
-    //   closeModal();
-    //   setServiceId();
-    // }
-
-    // if (location.pathname === '/coupons') {
-    //   CouponServices.deleteCoupon(id)
-    //     .then((res) => {
-    //       setIsUpdate(true);
-    //       notifySuccess(res.message);
-    //     })
-    //     .catch((err) => notifyError(err.message));
-    //   closeModal();
-    //   setServiceId();
-    // }
-    // if (location.pathname === '/our-staff') {
-    //   AdminServices.deleteStaff(id)
-    //     .then((res) => {
-    //       setIsUpdate(true);
-    //       notifySuccess(res.message);
-    //     })
-    //     .catch((err) => notifyError(err.message));
-    //   closeModal();
-    //   setServiceId();
-    // }
   };
 
   return (

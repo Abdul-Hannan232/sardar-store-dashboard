@@ -154,8 +154,9 @@ const InvoiceForDownload = ({ data }) => {
           </View>
           <View>
             <Image style={styles.logo} src={logoLight} />
-            <Text style={styles.info}>Cecilia Chapman, 561-4535 Nulla LA,</Text>
-            <Text style={styles.info}> United States 96522</Text>
+            <Text style={styles.info}>Lahore, Punjab, 54000,  {" "}
+            </Text>
+            <Text style={styles.info}>Pakistan.</Text>
           </View>
         </View>
         <View style={styles.invoiceSecond}>
@@ -165,6 +166,18 @@ const InvoiceForDownload = ({ data }) => {
               {data.createdAt !== undefined && (
                 <Text>{dayjs(data?.createdAt).format("MMMM D, YYYY")}</Text>
               )}
+            </Text>
+            <Text style={styles.info}>
+             {data?.user?.name}
+            </Text>
+            <Text style={styles.info}>
+             {data?.user?.email}
+            </Text>
+            <Text style={styles.info}>
+             {data?.user?.address}
+            </Text>
+            <Text style={styles.info}>
+             {data?.user?.phone}
             </Text>
           </View>
           <View>
