@@ -83,6 +83,9 @@ const ProductTable = ({ products }) => {
             <TableCell>
               <span className="text-sm font-semibold">${product.price}</span>
             </TableCell>
+            <TableCell>
+              <span className="text-sm font-semibold">{product.brand || "No Brand"}</span>
+            </TableCell>
 
             <TableCell>
               <span className="text-xs capitalize font-semibold">

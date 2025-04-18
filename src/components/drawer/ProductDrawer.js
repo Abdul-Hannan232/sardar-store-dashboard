@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import { Select, Textarea } from "@windmill/react-ui";
 import ReactTagInput from "@pathofdev/react-tag-input";
@@ -15,6 +15,8 @@ import useAsync from "../../hooks/useAsync";
 import CategoryServices from "../../services/CategoryServices";
 import ProductImgUploader from "../image-uploader/ProductImgUploader";
 
+
+
 const ProductDrawer = ({ id }) => {
   const {
     register,
@@ -26,8 +28,13 @@ const ProductDrawer = ({ id }) => {
     setImageUrl,
     tag,
     setTag,
+    productCode,
+    setProductCode,
+    generateProductCode
+
   } = useProductSubmit(id);
 
+ 
   const { data } = useAsync(CategoryServices.getAllCategory);
 
   return (
@@ -51,7 +58,26 @@ const ProductDrawer = ({ id }) => {
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Product Image" />
               <div className="col-span-8 sm:col-span-4">
-                <ProductImgUploader imageUrl={imageUrl} setImageUrl={setImageUrl} />
+                <ProductImgUploader
+                  imageUrl={imageUrl}
+                  setImageUrl={setImageUrl}
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Product Code" />
+              <div className="col-span-8 sm:col-span-4">
+                {/* {console.log(">>>>> ",productCode)} */}
+                <InputArea
+                  register={register}
+                  label="Product Code"
+                  name="productCode"
+                  type="text"
+                  placeholder="Enter Product Code"
+                  onChange={(e) => setProductCode(e.target.value)}
+                />
+                <Error errorName={errors.productCode} />
               </div>
             </div>
 
@@ -115,6 +141,21 @@ const ProductDrawer = ({ id }) => {
             </div>
 
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Brand" />
+              <div className="col-span-8 sm:col-span-4">
+                <InputArea
+                  register={register}
+                  label="Brand"
+                  name="brand"
+                  type="text"
+                  required={true}
+                  placeholder="Enter Brand"
+                />
+                <Error errorName={errors.brand} />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Price" />
               <div className="col-span-8 sm:col-span-4">
                 <InputValue
@@ -131,6 +172,22 @@ const ProductDrawer = ({ id }) => {
                   value={watch("price") || ""} // Ensure it's never null
                 />
                 <Error errorName={errors.price} />
+              </div>
+            </div>
+            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Promotion Price" />
+              <div className="col-span-8 sm:col-span-4">
+                <InputValue
+                  register={register}
+                  maxValue={2000}
+                  minValue={1}
+                  label="Promotion price in PKR"
+                  name="promo_price_pkr"
+                  type="number"
+                  placeholder="Promotion Price in PKR"
+                  value={watch("promo_price_pkr") || ""} // Ensure it's never null
+                />
+                <Error errorName={errors.promo_price_pkr} />
               </div>
             </div>
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
@@ -151,22 +208,7 @@ const ProductDrawer = ({ id }) => {
                 <Error errorName={errors.price_usd} />
               </div>
             </div>
-            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-              <LabelArea label="Promotion Price" />
-              <div className="col-span-8 sm:col-span-4">
-                <InputValue
-                  register={register}
-                  maxValue={2000}
-                  minValue={1}
-                  label="Promotion price in PKR"
-                  name="promo_price_pkr"
-                  type="number"
-                  placeholder="Promotion Price in PKR"
-                  value={watch("promo_price_pkr") || ""} // Ensure it's never null
-                />
-                <Error errorName={errors.promo_price_pkr} />
-              </div>
-            </div>
+
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Promotion Price ($)" />
               <div className="col-span-8 sm:col-span-4">
@@ -244,4 +286,3 @@ const ProductDrawer = ({ id }) => {
 };
 
 export default React.memo(ProductDrawer);
-
