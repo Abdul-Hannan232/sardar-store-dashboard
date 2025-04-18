@@ -143,6 +143,7 @@ const Products = () => {
           <Table>
             <TableHeader>
               <tr>
+                <TableCell>PRODUCT CODE</TableCell>
                 <TableCell>NAME</TableCell>
                 <TableCell>IMAGES</TableCell>
                 <TableCell>PRICE</TableCell>

@@ -5,10 +5,10 @@ const InputValue = ({ register,required, maxValue, minValue, defaultValue, name,
   const value = {
     valueAsNumber: true,
     required: required ? false : `${label} is required!`,
-    max: {
-      value: maxValue,
-      message: `Maximum value ${maxValue}!`,
-    },
+    // max: {
+    //   value: maxValue,
+    //   message: `Maximum value ${maxValue}!`,
+    // },
     min: {
       value: minValue,
       message: `Minimum value ${minValue}!`,

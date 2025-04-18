@@ -12,12 +12,9 @@ const generateProductCode = () => {
   return `PRD-${randomNumber1}-${randomNumber2}`;
 };
 
-
-
-
 const useProductSubmit = (id, type) => {
   // const { data, loading } = useAsync(CategoryServices.getAllCategory);
-  const { data} = useAsync(CategoryServices.getAllCategory);
+  const { data } = useAsync(CategoryServices.getAllCategory);
 
   const [imageUrl, setImageUrl] = useState([]);
   const [title, setTitle] = useState("");
@@ -32,7 +29,7 @@ const useProductSubmit = (id, type) => {
   const [tag, setTag] = useState([]);
   const { isDrawerOpen, closeDrawer, setIsUpdate } = useContext(SidebarContext);
 
-// console.log('---------- imageUrl', imageUrl);
+  // console.log('---------- imageUrl', imageUrl);
 
   const {
     register,
@@ -43,13 +40,16 @@ const useProductSubmit = (id, type) => {
     formState: { errors },
   } = useForm();
 
- 
+  useEffect(() => {
+    if (!id) {
+      setValue("productCode", generateProductCode()); // Auto-generate for new product
+      setProductCode(generateProductCode()); // Auto-generate for new product
+    }
+  }, [id]);
 
   const onSubmit = (formData) => {
-
-    const result = data?.find((parent) =>
-      formData?.parent?.toLowerCase() === parent?.name.toLowerCase()
-       
+    const result = data?.find(
+      (parent) => formData?.parent?.toLowerCase() === parent?.name.toLowerCase()
     );
 
     // console.log('result ', result);
@@ -58,11 +58,11 @@ const useProductSubmit = (id, type) => {
       notifyError("Image is required!");
       return;
     }
-   
+
     // console.log('imageUrl', imageUrl);
     const productData = {
       title: formData.title,
-      brand: formData.brand ? formData.brand :"No Brand",
+      brand: formData.brand ? formData.brand : "No Brand",
       description: formData.description,
       parent: formData.parent,
       children: formData.children,
@@ -71,8 +71,8 @@ const useProductSubmit = (id, type) => {
       promo_price_pkr: formData.promo_price_pkr,
       promo_price_usd: formData.promo_price_usd,
       productCode: formData.productCode || generateProductCode(),
-      gallery: imageUrl.length > 1 ? JSON.stringify(imageUrl) : '[]',
-      image: imageUrl.length === 1 ? imageUrl[0] : '',
+      gallery: imageUrl.length > 1 ? JSON.stringify(imageUrl) : "[]",
+      image: imageUrl.length === 1 ? imageUrl[0] : "",
       // image: typeof imageUrl === 'string' ? imageUrl : '',
       // image: imageUrl.length === 1 ? imageUrl[0] : '',
       tag: JSON.stringify(tag),
@@ -93,7 +93,7 @@ const useProductSubmit = (id, type) => {
       ProductServices.addProduct(productData)
         .then((res) => {
           // console.log('addProduct ',res.reqz);
-          
+
           setIsUpdate(true);
           notifySuccess(res.message);
         })
@@ -126,7 +126,6 @@ const useProductSubmit = (id, type) => {
           setProductCode(res.productCode || generateProductCode());
           setTag(JSON.parse(res.tag));
           setImageUrl(res.image ? res.image : res.gallery);
-         
         }
       })
       .catch((err) => {
@@ -200,16 +199,15 @@ const useProductSubmit = (id, type) => {
             setValue("price", res.price);
             setValue("price_usd", res.price_usd);
             setValue("promo_price_pkr", res.promo_price_pkr);
-            setValue("promo_price_usd", res.promo_price_usd); 
+            setValue("promo_price_usd", res.promo_price_usd);
             setValue("productCode", res.productCode || generateProductCode());
             setProductCode(res.productCode || generateProductCode());
             setTag(JSON.parse(res.tag));
-            setImageUrl(res.image ? [ res.image] : JSON.parse(res.gallery));
+            setImageUrl(res.image ? [res.image] : JSON.parse(res.gallery));
             setTitle(res.title);
             setBrand(res.brand);
             // setStock(res.stock);
             // setPrice(res.price)
-            
           }
         })
         .catch((err) => {
@@ -224,6 +222,7 @@ const useProductSubmit = (id, type) => {
   }, [watch, children]);
 
   return {
+    setValue,
     register,
     watch,
     handleSubmit,
@@ -249,8 +248,8 @@ const useProductSubmit = (id, type) => {
     setPromo_price_usd,
     productCode,
     setProductCode,
-    generateProductCode
-
+    generateProductCode,
+    isDrawerOpen,
   };
 };
 

@@ -44,11 +44,17 @@ const ProductTable = ({ products }) => {
                 {product.id}
               </span>
             </TableCell> */}
+               <TableCell>
+              <span  className="text-xs capitalize font-semibold">
+                {" "}
+                {product.productCode}
+              </span>
+            </TableCell>
             
             <TableCell>
-              <span className="text-xs capitalize font-semibold">
+              <span  title={product.title} className="text-xs capitalize font-semibold">
                 {" "}
-                {product.title}
+                {product.title.length > 20 ? `${product.title.substring(0, 20)}...` : product.title}
               </span>
             </TableCell>
             {/* {console.log('ffffffffffffff',product)

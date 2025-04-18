@@ -15,8 +15,6 @@ import useAsync from "../../hooks/useAsync";
 import CategoryServices from "../../services/CategoryServices";
 import ProductImgUploader from "../image-uploader/ProductImgUploader";
 
-
-
 const ProductDrawer = ({ id }) => {
   const {
     register,
@@ -30,13 +28,19 @@ const ProductDrawer = ({ id }) => {
     setTag,
     productCode,
     setProductCode,
-    generateProductCode
-
+    setValue,
+    isDrawerOpen
+    // generateProductCode,
   } = useProductSubmit(id);
 
- 
   const { data } = useAsync(CategoryServices.getAllCategory);
 
+  useEffect(() => {
+    if (isDrawerOpen && !id && productCode) {
+      setValue("productCode", productCode);
+    }
+  }, [isDrawerOpen, productCode, id, setValue]);
+    
   return (
     <>
       <div className="w-full relative p-6 border-b border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
@@ -48,6 +52,7 @@ const ProductDrawer = ({ id }) => {
         ) : (
           <Title
             title="Add Product"
+          
             description="Add your product and necessary information from here"
           />
         )}
@@ -68,14 +73,13 @@ const ProductDrawer = ({ id }) => {
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Product Code" />
               <div className="col-span-8 sm:col-span-4">
-                {/* {console.log(">>>>> ",productCode)} */}
+
                 <InputArea
                   register={register}
-                  label="Product Code"
+                  label="productCode"
                   name="productCode"
                   type="text"
                   placeholder="Enter Product Code"
-                  onChange={(e) => setProductCode(e.target.value)}
                 />
                 <Error errorName={errors.productCode} />
               </div>
@@ -183,6 +187,7 @@ const ProductDrawer = ({ id }) => {
                   minValue={1}
                   label="Promotion price in PKR"
                   name="promo_price_pkr"
+                  required={true}
                   type="number"
                   placeholder="Promotion Price in PKR"
                   value={watch("promo_price_pkr") || ""} // Ensure it's never null
@@ -202,7 +207,6 @@ const ProductDrawer = ({ id }) => {
                   name="price_usd"
                   type="number"
                   placeholder="Price in Dollar ($)"
-                  // value={watch("price_usd") || ""} // Ensure it's never null
                   value={watch("price_usd") || ""} // Ensure it's never null
                 />
                 <Error errorName={errors.price_usd} />
