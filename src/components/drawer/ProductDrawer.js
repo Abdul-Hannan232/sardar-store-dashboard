@@ -195,7 +195,7 @@ const ProductDrawer = ({ id }) => {
                 <Error errorName={errors.promo_price_pkr} />
               </div>
             </div>
-            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+            {/* <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Price ($)" />
               <div className="col-span-8 sm:col-span-4">
                 <InputValue
@@ -211,9 +211,9 @@ const ProductDrawer = ({ id }) => {
                 />
                 <Error errorName={errors.price_usd} />
               </div>
-            </div>
+            </div> */}
 
-            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+            {/* <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Promotion Price ($)" />
               <div className="col-span-8 sm:col-span-4">
                 <InputValue
@@ -229,7 +229,7 @@ const ProductDrawer = ({ id }) => {
                 />
                 <Error errorName={errors.promo_price_usd} />
               </div>
-            </div>
+            </div> */}
 
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Stock" />
