@@ -25,6 +25,7 @@ const useProductSubmit = (id, type) => {
   const [price_usd, setPrice_usd] = useState();
   const [promo_price_pkr, setPromo_price_pkr] = useState();
   const [promo_price_usd, setPromo_price_usd] = useState();
+  const [deliveryCharges, setDeliveryCharges] = useState();
   const [productCode, setProductCode] = useState("");
   const [tag, setTag] = useState([]);
   const { isDrawerOpen, closeDrawer, setIsUpdate } = useContext(SidebarContext);
@@ -62,6 +63,7 @@ const useProductSubmit = (id, type) => {
     // console.log('imageUrl', imageUrl);
     const productData = {
       title: formData.title,
+      delivery: parseInt(formData.deliveryCharges),
       brand: formData.brand ? formData.brand : "No Brand",
       description: formData.description,
       parent: formData.parent,
@@ -73,18 +75,17 @@ const useProductSubmit = (id, type) => {
       productCode: formData.productCode || generateProductCode(),
       gallery: imageUrl.length > 1 ? JSON.stringify(imageUrl) : "[]",
       image: imageUrl.length === 1 ? imageUrl[0] : "",
-      // image: typeof imageUrl === 'string' ? imageUrl : '',
-      // image: imageUrl.length === 1 ? imageUrl[0] : '',
       tag: JSON.stringify(tag),
       stock: formData.stock,
       category_id: result.id,
     };
-    console.log(productData);
+    // console.log(productData);
 
     if (id) {
       ProductServices.updateProduct(id, productData)
         .then((res) => {
           setIsUpdate(true);
+         
           notifySuccess(res.message);
         })
         .catch((err) => notifyError(err.message));
@@ -108,6 +109,7 @@ const useProductSubmit = (id, type) => {
         if (res) {
           // setValue("sku", res.sku);
           setValue("title", res.title);
+          setValue("deliveryCharges", res.delivery);
           setValue("brand", res.brand);
           // setValue("slug", res.slug);
           setValue("description", res.description);
@@ -137,6 +139,7 @@ const useProductSubmit = (id, type) => {
     if (!isDrawerOpen) {
       setValue("sku");
       setValue("title");
+      setValue("deliveryCharges");
       setValue("productCode");
       setValue("brand");
       setValue("slug");
@@ -157,6 +160,7 @@ const useProductSubmit = (id, type) => {
       setChildren("");
       setTag([]);
       clearErrors("sku");
+      clearErrors("deliveryCharges");
       clearErrors("title");
       clearErrors("brand");
       clearErrors("slug");
@@ -185,6 +189,7 @@ const useProductSubmit = (id, type) => {
           if (res) {
             setValue("sku", res.sku);
             setValue("title", res.title);
+            setValue("deliveryCharges", res.delivery);
             setValue("brand", res.brand);
             setValue("slug", res.slug);
             setValue("description", res.description);
@@ -205,6 +210,7 @@ const useProductSubmit = (id, type) => {
             setTag(JSON.parse(res.tag));
             setImageUrl(res.image ? [res.image] : JSON.parse(res.gallery));
             setTitle(res.title);
+            setDeliveryCharges(res.delivery);
             setBrand(res.brand);
             // setStock(res.stock);
             // setPrice(res.price)
@@ -234,6 +240,8 @@ const useProductSubmit = (id, type) => {
     setTag,
     title,
     setTitle,
+    deliveryCharges,
+    setDeliveryCharges,
     brand,
     setBrand,
     stock,

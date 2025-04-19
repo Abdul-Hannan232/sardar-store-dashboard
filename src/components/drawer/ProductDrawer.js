@@ -164,7 +164,7 @@ const ProductDrawer = ({ id }) => {
               <div className="col-span-8 sm:col-span-4">
                 <InputValue
                   register={register}
-                  maxValue={2000}
+                  // maxValue={2000}
                   minValue={1}
                   label="price (pkr)"
                   name="price"
@@ -183,8 +183,8 @@ const ProductDrawer = ({ id }) => {
               <div className="col-span-8 sm:col-span-4">
                 <InputValue
                   register={register}
-                  maxValue={2000}
-                  minValue={1}
+                  // maxValue={2000}
+                  // minValue={1}
                   label="Promotion price in PKR"
                   name="promo_price_pkr"
                   required={true}
@@ -231,6 +231,20 @@ const ProductDrawer = ({ id }) => {
               </div>
             </div> */}
 
+<div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Delivery Charges" />
+              <div className="col-span-8 sm:col-span-4">
+                <InputArea
+                  register={register}
+                  label="Delivery charges"
+                  name="deliveryCharges"
+                  minValue={1}
+                  type="number"
+                  placeholder="Enter Delivery Charges"
+                />
+                <Error errorName={errors.deliveryCharges} />
+              </div>
+            </div>
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Stock" />
               <div className="col-span-8 sm:col-span-4">

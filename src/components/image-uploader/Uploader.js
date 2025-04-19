@@ -12,7 +12,8 @@ const Uploader = ({ setImageUrl, imageUrl }) => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     multiple: false,
-    maxSize: 500000,
+    // maxSize: 500000,
+    maxSize: 10000000,
     onDrop: (acceptedFiles) => {
       setFiles(
         acceptedFiles.map((file) =>

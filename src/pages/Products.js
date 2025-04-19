@@ -147,6 +147,7 @@ const Products = () => {
                 <TableCell>NAME</TableCell>
                 <TableCell>IMAGES</TableCell>
                 <TableCell>PRICE</TableCell>
+                <TableCell>DELIVER CHARGES</TableCell>
                 <TableCell>BRAND</TableCell>
                 <TableCell>PRODUCT DETAILS</TableCell>
                 <TableCell>TAGS</TableCell>
