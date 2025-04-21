@@ -78,7 +78,12 @@ const ProductDetails = () => {
               </div>
               <div className="font-serif product-price font-bold dark:text-gray-400">
                 <span className="inline-block text-2xl">
-                  ${data.price}
+                  Rs {data?.promo_price_pkr ? data.promo_price_pkr : data?.price}
+                  {data.promo_price_pkr > 0  && (
+                    <del className="text-gray-400 dark:text-gray-500 text-lg pl-2">
+                      Rs {data.price}
+                    </del>
+                  )}
                   {/* {data.discount >= 1 && (
                     <del className="text-gray-400 dark:text-gray-500 text-lg pl-2">
                       ${data.originalPrice}
@@ -116,6 +121,12 @@ const ProductDetails = () => {
                     Brand:{" "}
                   </span>{" "}
                   {data.brand || "No Brand"}
+                </p>
+                <p className="font-serif font-semibold py-1 text-gray-500 text-sm">
+                  <span className="text-gray-700 dark:text-gray-400">
+                    Delivery:{" "}
+                  </span>{" "}
+                  {data.delivery >0 ?"Rs " +data.delivery  : "Free Delivery"}
                 </p>
                 <div className="flex flex-row">
                   {JSON.parse(data?.tag).map((t, i) => (

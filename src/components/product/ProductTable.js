@@ -90,7 +90,7 @@ const ProductTable = ({ products }) => {
               <span className="text-sm font-semibold">{product.price}</span>
             </TableCell>
             <TableCell>
-              <span className="text-sm font-semibold">{product.promo_price_pkr}</span>
+              <span className="text-sm font-semibold">{product.promo_price_pkr || "-"}</span>
             </TableCell>
             <TableCell>
               <span className="text-sm font-semibold">{product.delivery ? "Rs "+ product.delivery : "Free Delivery" }</span>
