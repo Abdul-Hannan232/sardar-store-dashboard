@@ -114,6 +114,7 @@ const AppPromoDrawer = ({ id }) => {
                   label="App Store URL"
                   name="app_store_url"
                   defaultValue=""
+                  required={true}
                   type="text"
                   placeholder="Enter App Store URL"
                 />
@@ -129,6 +130,7 @@ const AppPromoDrawer = ({ id }) => {
                   label="Play Store URL"
                   name="play_store_url"
                   defaultValue=""
+                  required={true}
                   type="text"
                   placeholder="Enter Play Store URL"
                 />
