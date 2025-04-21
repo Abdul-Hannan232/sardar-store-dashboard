@@ -64,7 +64,7 @@ const FaqTable = ({ faqs }) => {
             <TableCell>
               <EditDeleteButton
                 id={faq.id}
-                title="{product.title}"
+                title={"Faq "+faq.id}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
               />
