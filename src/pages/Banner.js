@@ -22,19 +22,10 @@ import BannerDrawer from "../components/drawer/BannerDrawer";
 import BannerServices from "../services/BannerServices";
 
 const Banner = () => {
-  const {
-    toggleDrawer,
-    handleChangePage,
-    handleSubmitForAll,
-  } = useContext(SidebarContext);
+  const { toggleDrawer, handleChangePage, handleSubmitForAll } =
+    useContext(SidebarContext);
 
-  const { data, loading } = useAsync(
-    () =>
-    
-      BannerServices.getAllBanner(),
-    []
-  );
-
+  const { data, loading } = useAsync(() => BannerServices.getAllBanner(), []);
 
   const { serviceData } = useFilter(data?.banners);
 
@@ -76,6 +67,7 @@ const Banner = () => {
                 <TableCell>START DATET</TableCell>
                 <TableCell>END DATET</TableCell>
                 <TableCell>ISVISIBLE</TableCell>
+                <TableCell className="text-center">VIEW</TableCell>
                 <TableCell className="text-center">ENABLES</TableCell>
                 <TableCell className="text-right">Actions</TableCell>
               </tr>

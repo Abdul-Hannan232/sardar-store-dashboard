@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 import Faq from '../pages/Faq';
-
 // use lazy for better code splitting
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Products = lazy(() => import('../pages/Products'));
@@ -14,6 +13,7 @@ const Category = lazy(() => import('../pages/Category'));
 const FaqDetails = lazy(() => import('../pages/FaqDetails'));
 const Orders = lazy(() => import('../pages/Orders'));
 const OrderInvoice = lazy(() => import('../pages/OrderInvoice'));
+const BannerDetails = lazy(() => import('../pages/BannerDetails'));
 // const Coupons = lazy(() => import('../pages/Coupons'));
 // const Setting = lazy(() => import("../pages/Setting"));
 // const Page404 = lazy(() => import('../pages/404'));
@@ -72,6 +72,11 @@ const routes = [
    path: '/settings/banner',
     component: Banner,
   },
+  {
+    path: '/settings/banner/:id',
+    component: BannerDetails,
+  },
+
   {
     path: '/settings/app-promotion',
     component: AppPromotion,

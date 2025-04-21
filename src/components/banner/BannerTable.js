@@ -93,9 +93,9 @@ const BannerTable = ({ banners }) => {
               <span className="text-sm font-semibold">{banner.isVisible? "Show":"Hide"}</span>
             </TableCell>
 
-            {/* <TableCell>
+            <TableCell>
               <Link
-                to={`/product/${product.id}`}
+                to={`/settings/banner/${banner.id}`}
                 className="flex justify-center text-center text-gray-400 hover:text-green-600"
               >
                 <Tooltip
@@ -105,7 +105,7 @@ const BannerTable = ({ banners }) => {
                   bgColor="#10B981"
                 />
               </Link>
-            </TableCell> */}
+            </TableCell>
 
             <TableCell>
               <ShowHideButton id={banner.id} status={banner.isVisible} />
