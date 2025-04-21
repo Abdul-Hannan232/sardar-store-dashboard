@@ -87,10 +87,13 @@ const ProductTable = ({ products }) => {
             </TableCell> */}
 
             <TableCell>
-              <span className="text-sm font-semibold">${product.price}</span>
+              <span className="text-sm font-semibold">{product.price}</span>
             </TableCell>
             <TableCell>
-              <span className="text-sm font-semibold">${product.delivery}</span>
+              <span className="text-sm font-semibold">{product.promo_price_pkr}</span>
+            </TableCell>
+            <TableCell>
+              <span className="text-sm font-semibold">{product.delivery ? "Rs "+ product.delivery : "Free Delivery" }</span>
             </TableCell>
             <TableCell>
               <span className="text-sm font-semibold">{product.brand || "No Brand"}</span>

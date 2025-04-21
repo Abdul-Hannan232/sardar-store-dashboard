@@ -70,6 +70,7 @@ const Products = () => {
     data?.products
   );
 
+
   return ( 
     <>
       <MainDrawer>
@@ -146,7 +147,8 @@ const Products = () => {
                 <TableCell>PRODUCT CODE</TableCell>
                 <TableCell>NAME</TableCell>
                 <TableCell>IMAGES</TableCell>
-                <TableCell>PRICE</TableCell>
+                <TableCell>PRICE (Rs)</TableCell>
+                <TableCell>PROMO PRICE (Rs)</TableCell>
                 <TableCell>DELIVER CHARGES</TableCell>
                 <TableCell>BRAND</TableCell>
                 <TableCell>PRODUCT DETAILS</TableCell>
