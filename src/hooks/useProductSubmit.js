@@ -29,6 +29,8 @@ const useProductSubmit = (id, type) => {
   const [productCode, setProductCode] = useState("");
   const [tag, setTag] = useState([]);
   const { isDrawerOpen, closeDrawer, setIsUpdate } = useContext(SidebarContext);
+  const [variations, setVariations] = useState([]);
+
 
   // console.log('---------- imageUrl', imageUrl);
 
@@ -49,6 +51,8 @@ const useProductSubmit = (id, type) => {
   }, [id]);
 
   const onSubmit = (formData) => {
+    console.log("form");
+    
     const result = data?.find(
       (parent) => formData?.parent?.toLowerCase() === parent?.name.toLowerCase()
     );
@@ -68,9 +72,11 @@ const useProductSubmit = (id, type) => {
       description: formData.description,
       parent: formData.parent,
       children: formData.children,
-      price: formData.price,
+      // price: formData.price,
+      // promo_price_pkr: formData.promo_price_pkr,
+      price: variations.length > 0 ? null : formData.price,
+      promo_price_pkr: variations.length > 0 ? null : formData.promo_price_pkr,
       price_usd: formData.price_usd,
-      promo_price_pkr: formData.promo_price_pkr,
       promo_price_usd: formData.promo_price_usd,
       productCode: formData.productCode || generateProductCode(),
       gallery: imageUrl.length > 1 ? JSON.stringify(imageUrl) : "[]",
@@ -78,10 +84,13 @@ const useProductSubmit = (id, type) => {
       tag: JSON.stringify(tag),
       stock: formData.stock,
       category_id: result.id,
+      variations:variations.length > 0 ?  variations : []
     };
     // console.log(productData);
 
     if (id) {
+      console.log("hello");
+      
       ProductServices.updateProduct(id, productData)
         .then((res) => {
           setIsUpdate(true);
@@ -91,6 +100,8 @@ const useProductSubmit = (id, type) => {
         .catch((err) => notifyError(err.message));
       closeDrawer();
     } else {
+      // console.log(productData);
+      
       ProductServices.addProduct(productData)
         .then((res) => {
           // console.log('addProduct ',res.reqz);
@@ -126,6 +137,7 @@ const useProductSubmit = (id, type) => {
           setValue("promo_price_usd", res.promo_price_usd);
           setValue("productCode", res.productCode || generateProductCode());
           setProductCode(res.productCode || generateProductCode());
+          setVariations(JSON.parse(res.variations) );
           setTag(JSON.parse(res.tag));
           setImageUrl(res.image ? res.image : res.gallery);
         }
@@ -206,6 +218,7 @@ const useProductSubmit = (id, type) => {
             setValue("promo_price_pkr", res.promo_price_pkr);
             setValue("promo_price_usd", res.promo_price_usd);
             setValue("productCode", res.productCode || generateProductCode());
+            setVariations(JSON.parse(res.variations));
             setProductCode(res.productCode || generateProductCode());
             setTag(JSON.parse(res.tag));
             setImageUrl(res.image ? [res.image] : JSON.parse(res.gallery));
@@ -258,6 +271,7 @@ const useProductSubmit = (id, type) => {
     setProductCode,
     generateProductCode,
     isDrawerOpen,
+    variations, setVariations
   };
 };
 
