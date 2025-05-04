@@ -150,6 +150,7 @@ const Products = () => {
                 <TableCell>PRICE (Rs)</TableCell>
                 <TableCell>PROMO PRICE (Rs)</TableCell>
                 <TableCell>DELIVER CHARGES</TableCell>
+                <TableCell>VARIATIONS</TableCell>
                 <TableCell>BRAND</TableCell>
                 <TableCell>PRODUCT DETAILS</TableCell>
                 <TableCell>TAGS</TableCell>

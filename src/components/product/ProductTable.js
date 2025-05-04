@@ -26,6 +26,7 @@ const ProductTable = ({ products }) => {
       return text;
     }
   }
+
   return (
     <>
       <MainModal id={serviceId} title={title} />
@@ -94,6 +95,21 @@ const ProductTable = ({ products }) => {
             </TableCell>
             <TableCell>
               <span className="text-sm font-semibold">{product.delivery ? "Rs "+ product.delivery : "Free Delivery" }</span>
+            </TableCell>
+            <TableCell>
+              {JSON.parse(product.variations)? JSON.parse(product.variations)
+               .sort((a, b) => {
+                const priceA = a.promo_price_pkr || a.price; 
+                const priceB = b.promo_price_pkr || b.price;
+                return priceA - priceB; // Ascending order ke liye
+              })
+                .map((v, i) => {
+                  return (
+                    <span key={i} className="inline-flex items-center rounded-md bg-gray-300 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 mx-1">
+                      {v.size}({v.stock}) - (Rs {v.promo_price_pkr? v.promo_price_pkr +" - Rs "+ v.price :v.price})
+                    </span>
+                  );
+                }):"-"}
             </TableCell>
             <TableCell>
               <span className="text-sm font-semibold">{product.brand || "No Brand"}</span>

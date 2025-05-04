@@ -45,7 +45,7 @@ const OrderTable = ({ orders }) => {
             </TableCell>
 
             <TableCell>
-              <span className="text-sm"> ${Math.round(order.totalPrice)}</span>
+              <span className="text-sm"> Rs {Math.round(order.totalPrice)}</span>
             </TableCell>
 
             <TableCell>

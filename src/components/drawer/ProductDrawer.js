@@ -503,8 +503,8 @@ const ProductDrawer = ({ id }) => {
                       ? { required: "Price in PKR is required!" } 
                       : {} 
                   )}
-                  required={variations.length>0}
                   placeholder="Price in PKR"
+                  required={variations.length>0}
                   disable={variations.length > 0}
                   value={watch("price") || ""} // Ensure it's never null
                 />
@@ -573,7 +573,7 @@ const ProductDrawer = ({ id }) => {
                   <div
                     key={index}
                     className="grid  gap-3   mb-6  p-4 rounded-lg "
-                    style={{ gridTemplateColumns: "1fr 1fr 1fr 30px" }}
+                    style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 30px" }}
                   >
                     <input
                       type="text"
@@ -603,6 +603,19 @@ const ProductDrawer = ({ id }) => {
                         updateVariation(
                           index,
                           "promo_price_pkr",
+                          e.target.value
+                        )
+                      }
+                    />
+                    <input
+                      type="number"
+                      placeholder="Stock"
+                      className="w-full h-12 border p-2 rounded-lg text-sm focus:outline-none bg-gray-100 dark:bg-white  focus:bg-white"
+                      value={variation.stock}
+                      onChange={(e) =>
+                        updateVariation(
+                          index,
+                          "stock",
                           e.target.value
                         )
                       }
@@ -652,12 +665,14 @@ const ProductDrawer = ({ id }) => {
               <div className="col-span-8 sm:col-span-4">
                 <InputValue
                   register={register}
-                  maxValue={2000}
-                  minValue={1}
+                  // maxValue={2000}
+                  // minValue={1}
                   label="Stock"
                   name="stock"
                   type="number"
                   placeholder="Stock"
+                  required={variations.length>0}
+                  disable={variations.length > 0}
                   value={watch("stock") || ""} // Ensure it's never null
                 />
                 <Error errorName={errors.stock} />
