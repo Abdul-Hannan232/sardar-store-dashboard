@@ -154,8 +154,7 @@ const InvoiceForDownload = ({ data }) => {
           </View>
           <View>
             <Image style={styles.logo} src={logoLight} />
-            <Text style={styles.info}>Lahore, Punjab, 54000,  {" "}
-            </Text>
+            <Text style={styles.info}>Lahore, Punjab, 54000, </Text>
             <Text style={styles.info}>Pakistan.</Text>
           </View>
         </View>
@@ -167,18 +166,10 @@ const InvoiceForDownload = ({ data }) => {
                 <Text>{dayjs(data?.createdAt).format("MMMM D, YYYY")}</Text>
               )}
             </Text>
-            <Text style={styles.info}>
-             {data?.user?.name}
-            </Text>
-            <Text style={styles.info}>
-             {data?.user?.email}
-            </Text>
-            <Text style={styles.info}>
-             {data?.user?.address}
-            </Text>
-            <Text style={styles.info}>
-             {data?.user?.phone}
-            </Text>
+            <Text style={styles.info}>{data?.user?.name}</Text>
+            <Text style={styles.info}>{data?.user?.email}</Text>
+            <Text style={styles.info}>{data?.user?.address}</Text>
+            <Text style={styles.info}>{data?.user?.phone}</Text>
           </View>
           <View>
             <Text style={styles.title}>INVOICE NO</Text>
@@ -211,12 +202,23 @@ const InvoiceForDownload = ({ data }) => {
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
-                <Text style={styles.header}>Quantity</Text>
+                <Text style={styles.header}>Variation</Text>
               </Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
+                <Text style={styles.header}>Quantity</Text>
+              </Text>
+            </View>
+
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>
                 <Text style={styles.header}>Item Price</Text>
+              </Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>
+                <Text style={styles.header}>Delivey Fee</Text>
               </Text>
             </View>
             <View style={styles.tableCol}>
@@ -238,20 +240,81 @@ const InvoiceForDownload = ({ data }) => {
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>
-                  <Text style={styles.quantity}>{item.quantity}</Text>
+                  {(item.selectedVariation &&
+                  typeof item.selectedVariation === "string"
+                    ? item.selectedVariation
+                    : item.selectedVariation?.size) || "-"}
                 </Text>
               </View>
               <View style={styles.tableCol}>
+                <Text style={styles.tableCell}>
+                  <Text style={styles.quantity}>{item.quantity}</Text>
+                </Text>
+              </View>
+
+              {/* <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>
                   <Text style={styles.quantity}>
                     ${item.productDetails.price}.00
                   </Text>
                 </Text>
+              </View> */}
+              <View style={styles.tableCol}>
+                <Text style={styles.tableCell}>
+                  <Text style={styles.quantity}>
+                    Rs{" "}
+                    {item.selectedVariation
+                      ? typeof item.selectedVariation === "string"
+                        ? // Jab variation string ho
+                          JSON.parse(item.productDetails.variations).find(
+                            (v) => v.size === item.selectedVariation
+                          )?.promo_price_pkr ||
+                          JSON.parse(item.productDetails.variations).find(
+                            (v) => v.size === item.selectedVariation
+                          )?.price
+                        : // Jab variation object ho
+                          item.selectedVariation.promo_price_pkr ||
+                          item.selectedVariation.price
+                      : // Jab variations na ho
+                        item.productDetails.promo_price_pkr ||
+                        item.productDetails.price}
+                    
+                  </Text>
+                </Text>
               </View>
+
+              <View style={styles.tableCol}>
+                <Text style={styles.tableCell}>
+                  <Text style={styles.quantity}>
+                    {item.productDetails.delivery
+                      ? "Rs " + item?.productDetails.delivery
+                      : "Free Shipping"}{" "}
+                  </Text>
+                </Text>
+              </View>
+
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>
                   <Text style={styles.amount}>
-                    ${item.quantity * item.productDetails.price}.00
+                    Rs{" "}
+                    {item.quantity *
+                      (item.selectedVariation
+                        ? typeof item.selectedVariation === "string"
+                          ? // Jab variation string ho
+                            JSON.parse(item.productDetails.variations).find(
+                              (v) => v.size === item.selectedVariation
+                            )?.promo_price_pkr ||
+                            JSON.parse(item.productDetails.variations).find(
+                              (v) => v.size === item.selectedVariation
+                            )?.price
+                          : // Jab variation object ho
+                            item.selectedVariation.promo_price_pkr ||
+                            item.selectedVariation.price
+                        : // Jab variations na ho
+                          item.productDetails.promo_price_pkr ||
+                          item.productDetails.price) +
+                      (item.productDetails.delivery || 0)}
+                    
                   </Text>
                 </Text>
               </View>

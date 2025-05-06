@@ -32,7 +32,7 @@ const OrderTable = ({ orders }) => {
             <TableCell>
               {' '}
               <span className="text-sm font-semibold">
-                ${Math.round(order.totalPrice)}.00
+                Rs {Math.round(order.totalPrice)}
               </span>{' '}
             </TableCell>
             <TableCell>

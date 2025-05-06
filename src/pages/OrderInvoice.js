@@ -123,8 +123,10 @@ const OrderInvoice = () => {
                     <TableCell> Sr.</TableCell>
                     <TableCell>Product Image</TableCell>
                     <TableCell>Product Name</TableCell>
+                    <TableCell className="text-center">Variation</TableCell>
                     <TableCell className="text-center">Quantity</TableCell>
                     <TableCell className="text-center">Item Price</TableCell>
+                    <TableCell className="text-center">Delivey Fee</TableCell>
                     <TableCell className="text-center">Amount</TableCell>
                   </tr>
                 </TableHeader>
@@ -152,7 +154,7 @@ const OrderInvoice = () => {
                   Shipping Cost
                 </span>
                 <span className="text-sm text-gray-500 dark:text-gray-400 font-semibold font-serif block">
-                  ${Math.round(data.shippingCost)}.00
+                  Rs {Math.round(data?.delivery)}.00
                 </span>
               </div> */}
 
@@ -170,7 +172,7 @@ const OrderInvoice = () => {
                   Total Amount
                 </span>
                 <span className="text-xl font-serif font-bold text-red-500 dark:text-green-500 block">
-                  ${Math.round(data.totalPrice)}.00
+                  Rs {Math.round(data.totalPrice)}.00
                 </span>
               </div>
             </div>
