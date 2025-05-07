@@ -11,11 +11,12 @@ import { FiZoomIn } from "react-icons/fi";
 
 import Tooltip from "../tooltip/Tooltip";
 import MainModal from "../modal/MainModal";
-import MainDrawer from "../drawer/MainDrawer"; 
+import MainDrawer from "../drawer/MainDrawer";
 import ProductDrawer from "../drawer/ProductDrawer";
 import ShowHideButton from "../table/ShowHideButton";
 import EditDeleteButton from "../table/EditDeleteButton";
 import useToggleDrawer from "../../hooks/useToggleDrawer";
+import { RxCaretDown } from "react-icons/rx";
 
 const ProductTable = ({ products }) => {
   const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
@@ -36,7 +37,6 @@ const ProductTable = ({ products }) => {
       <TableBody>
         {/* {console.log(products)} */}
         {products?.map((product, i) => (
-          
           <TableRow key={i + 1}>
             {/* {console.log(`''''''''''''''''''' '`, product.title , JSON.parse(product.gallery)[0])} */}
             {/* <TableCell>
@@ -45,39 +45,45 @@ const ProductTable = ({ products }) => {
                 {product.id}
               </span>
             </TableCell> */}
-               <TableCell>
-              <span  className="text-xs capitalize font-semibold">
+            <TableCell>
+              <span className="text-xs capitalize font-semibold">
                 {" "}
                 {product.productCode}
               </span>
             </TableCell>
-            
+
             <TableCell>
-              <span  title={product.title} className="text-xs capitalize font-semibold">
+              <span
+                title={product.title}
+                className="text-xs capitalize font-semibold"
+              >
                 {" "}
-                {product.title.length > 20 ? `${product.title.substring(0, 20)}...` : product.title}
+                {product.title.length > 20
+                  ? `${product.title.substring(0, 20)}...`
+                  : product.title}
               </span>
             </TableCell>
             {/* {console.log('ffffffffffffff',product)
                 } */}
             <TableCell>
               <div className="flex items-center">
-              {product.image  && product.image !== '' ?  (
-                
-                <Avatar
-                 size="large"
-                  className="hidden  mr-2 md:block bg-gray-50 shadow-none"
-                  // src={product.image}
-                  src={product.image.replace('5055', '4000')}
-                  alt={product.title}
-                />) : ( <Avatar
-                size="large"
-                 className="hidden  mr-2 md:block bg-gray-50 shadow-none"
-                 src={JSON.parse(product.gallery)[0].replace('5055', '4000')}
-                //  src={JSON.parse(product.gallery)[0]}
-                 alt={product.title}
-               />
-              )}
+                {product.image && product.image !== "" ? (
+                  <Avatar
+                    size="large"
+                    className="hidden  mr-2 md:block bg-gray-50 shadow-none"
+                    // src={product.image}
+                    src={product.image.replace("5055", "4000")}
+                    alt={product.title}
+                  />
+                ) : (
+                  <Avatar
+                    size="large"
+                    className="hidden  mr-2 md:block bg-gray-50 shadow-none"
+                    src={JSON.parse(product.gallery)[0].replace("5055", "4000")}
+                    //  src={JSON.parse(product.gallery)[0]}
+                    alt={product.title}
+                  />
+                )}
                 {/* <div>
                   <h2 className="text-sm font-medium">{product.title}</h2>
                 </div> */}
@@ -88,31 +94,56 @@ const ProductTable = ({ products }) => {
             </TableCell> */}
 
             <TableCell>
-              <span className="text-sm font-semibold">{product.price || "-"}</span>
+              <span className="text-sm font-semibold">
+                {product.price || "-"}
+              </span>
             </TableCell>
             <TableCell>
-              <span className="text-sm font-semibold">{product.promo_price_pkr || "-"}</span>
+              <span className="text-sm font-semibold">
+                {product.promo_price_pkr || "-"}
+              </span>
             </TableCell>
             <TableCell>
-              <span className="text-sm font-semibold">{product.delivery ? "Rs "+ product.delivery : "Free Delivery" }</span>
+              <span className="text-sm font-semibold">
+                {product.delivery ? "Rs " + product.delivery : "Free Delivery"}
+              </span>
             </TableCell>
+           
+
             <TableCell>
-              {JSON.parse(product.variations)? JSON.parse(product.variations)
-               .sort((a, b) => {
-                const priceA = a.promo_price_pkr || a.price; 
-                const priceB = b.promo_price_pkr || b.price;
-                return priceA - priceB; // Ascending order ke liye
-              })
-                .map((v, i) => {
-                  return (
-                    <span key={i} className="inline-flex items-center rounded-md bg-gray-300 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 mx-1">
-                      {v.size}({v.stock}) - (Rs {v.promo_price_pkr? v.promo_price_pkr +" - Rs "+ v.price :v.price})
-                    </span>
-                  );
-                }):"-"}
+              {JSON.parse(product.variations) &&
+              JSON.parse(product.variations).length > 0 ? (
+                <div className="relative  ">
+                  <select className="block   rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring focus:ring-blue-500 appearance-none ">
+                    {JSON.parse(product.variations)
+                      .sort((a, b) => {
+                        const priceA = a.promo_price_pkr || a.price;
+                        const priceB = b.promo_price_pkr || b.price;
+                        return priceA - priceB; 
+                      })
+                      .map((v, i) => (
+                        <option key={i} value={v.size}>
+                          {v.size} ({v.stock}) - (Rs{" "}
+                          {v.promo_price_pkr
+                            ? `${v.promo_price_pkr} - Rs ${v.price}`
+                            : v.price}
+                          )
+                        </option>
+                      ))}
+                  </select>
+                  <div className="absolute h-full text-2xl inset-y-0 right-0 pr-2 flex items-center justify-center pointer-events-none">
+                    <RxCaretDown className="text-gray-400 w-full" />
+                  </div>
+                </div>
+              ) : (
+                <p className="w-full text-center">-</p>
+              )}
             </TableCell>
+
             <TableCell>
-              <span className="text-sm font-semibold">{product.brand || "No Brand"}</span>
+              <span className="text-sm font-semibold">
+                {product.brand || "No Brand"}
+              </span>
             </TableCell>
 
             <TableCell>
@@ -125,7 +156,7 @@ const ProductTable = ({ products }) => {
             {/* <TableCell>
               <span className="text-sm">{product.quantity}</span>
             </TableCell> */}
-            
+
             {/* <TableCell>
               {product.quantity > 0 ? (
                 <Badge type="success">Selling</Badge>
@@ -160,7 +191,10 @@ const ProductTable = ({ products }) => {
                 .split(",")
                 .map((t, i) => {
                   return (
-                    <span key={i} className="inline-flex items-center rounded-md bg-gray-300 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 mx-1">
+                    <span
+                      key={i}
+                      className="inline-flex items-center rounded-md bg-gray-300 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 mx-1"
+                    >
                       {t.slice(1, t.length - 1)}
                     </span>
                   );
@@ -188,7 +222,6 @@ const ProductTable = ({ products }) => {
             <TableCell>
               <ShowHideButton id={product.id} status={product.status} />
             </TableCell>
-
 
             <TableCell>
               <EditDeleteButton
