@@ -123,7 +123,7 @@ const OrderInvoice = () => {
                     <TableCell> Sr.</TableCell>
                     <TableCell>Product Image</TableCell>
                     <TableCell>Product Name</TableCell>
-                    <TableCell className="text-center">Variation</TableCell>
+                    <TableCell className="text-center">Size</TableCell>
                     <TableCell className="text-center">Quantity</TableCell>
                     <TableCell className="text-center">Item Price</TableCell>
                     <TableCell className="text-center">Delivey Fee</TableCell>

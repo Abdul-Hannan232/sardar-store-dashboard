@@ -134,6 +134,9 @@ const ProductTable = ({ products }) => {
                   <div className="absolute h-full text-2xl inset-y-0 right-0 pr-2 flex items-center justify-center pointer-events-none">
                     <RxCaretDown className="text-gray-400 w-full" />
                   </div>
+                  {/* <div className="absolute w-full   text-2xl     bottom-0 pr-2 flex items-center justify-center pointer-events-none">
+                    <RxCaretDown className="text-gray-400 w-full" />
+                  </div> */}
                 </div>
               ) : (
                 <p className="w-full text-center">-</p>

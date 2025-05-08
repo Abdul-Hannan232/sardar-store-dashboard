@@ -9,7 +9,8 @@ import {
 } from "@react-pdf/renderer";
 import dayjs from "dayjs";
 
-import logoLight from "../../assets/img/logo/logo-dark.png";
+// import logoLight from "../../assets/img/logo/logo-dark.png";
+import logoDark from "../../assets/img/logo/logo.png";
 
 Font.register({
   family: "Open Sans",
@@ -92,9 +93,9 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   logo: {
-    width: 74,
-    height: 16,
-    bottom: 5,
+    width: 30,
+    height: 24,
+    bottom: 0,
   },
   title: {
     color: "#111827",
@@ -153,7 +154,11 @@ const InvoiceForDownload = ({ data }) => {
             </Text>
           </View>
           <View>
-            <Image style={styles.logo} src={logoLight} />
+            {/* <Image style={styles.logo} src={logoLight} /> */}
+            <Text className="flex items-center justify-start ml-5">
+              <Image style={{...styles.logo}} src={logoDark} alt="sardarbaba"  />
+              <Text  style={{ fontFamily: "Open Sans", fontWeight: "bold" }}>SARDARSTORE</Text>
+            </Text>
             <Text style={styles.info}>Lahore, Punjab, 54000, </Text>
             <Text style={styles.info}>Pakistan.</Text>
           </View>
@@ -202,7 +207,7 @@ const InvoiceForDownload = ({ data }) => {
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
-                <Text style={styles.header}>Variation</Text>
+                <Text style={styles.header}>Size</Text>
               </Text>
             </View>
             <View style={styles.tableCol}>
@@ -278,7 +283,6 @@ const InvoiceForDownload = ({ data }) => {
                       : // Jab variations na ho
                         item.productDetails.promo_price_pkr ||
                         item.productDetails.price}
-                    
                   </Text>
                 </Text>
               </View>
@@ -314,7 +318,6 @@ const InvoiceForDownload = ({ data }) => {
                           item.productDetails.promo_price_pkr ||
                           item.productDetails.price) +
                       (item.productDetails.delivery || 0)}
-                    
                   </Text>
                 </Text>
               </View>

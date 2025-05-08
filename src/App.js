@@ -21,6 +21,7 @@ const App = () => {
       <ToastContainer />
       <Router>
         <AccessibleNavigationAnnouncer />
+        
         <Switch>
           <Route path="/login" component={Login} />
           {/* <Route path="/faq" component={Faq} /> */}
