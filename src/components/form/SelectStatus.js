@@ -15,6 +15,7 @@ const SelectStatus = ({ id, order }) => {
       })
       .catch((err) => notifyError(err.message));
   };
+console.log(order?.status);
 
   return (
     <>
@@ -22,8 +23,9 @@ const SelectStatus = ({ id, order }) => {
         onChange={(e) => handleChangeStatus(id, e.target.value)}
         className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"
       >
-        <option value="status" defaultValue hidden>
-          {order?.status}
+        {/* <option value="status" defaultValue hidden> */}
+        <option value="status"  hidden>
+          {order?.status }
         </option>
         <option defaultValue={order?.status === 'Delivered'} value="Delivered">
           Delivered

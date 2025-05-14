@@ -22,6 +22,22 @@ const sidebar = [
     icon: FiGrid, // icon
     name: 'Dashboard', // name that appear in Sidebar
   },
+  {
+    icon: FiSettings ,
+    name: 'Customer',
+    routes: [
+      // submenu
+
+      {
+        path: '/customer/user',
+        name: 'User ',
+      },
+      {
+        path: '/customer/subscription',
+        name: 'Subscription',
+      },
+    ],
+  },
  
   {
     path: '/category',

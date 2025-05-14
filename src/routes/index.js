@@ -1,5 +1,7 @@
 import { lazy } from 'react';
 import Faq from '../pages/Faq';
+import Customers from '../pages/Customers';
+import CustomerOrder from '../pages/CustomerOrder';
 // use lazy for better code splitting
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Products = lazy(() => import('../pages/Products'));
@@ -67,6 +69,14 @@ const routes = [
   {
     path: '/order/:id',
     component: OrderInvoice,
+  },
+  {
+   path: '/customer/user',
+    component: Customers,
+  },
+  {
+   path: '/customer-order/:id',
+    component: CustomerOrder,
   },
   {
    path: '/settings/banner',

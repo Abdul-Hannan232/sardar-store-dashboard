@@ -49,7 +49,7 @@ const Login = () => {
                   <LabelArea label="Password" />
                   <InputArea
                     register={register}
-                    defaultValue="1234567"
+                    defaultValue=""
                     label="Password" 
                     name="password"
                     type="password"

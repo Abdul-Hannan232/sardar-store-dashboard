@@ -16,7 +16,7 @@ const CardItemTwo = ({ title, Icon, className, price }) => {
               {title}
             </p>
             <p className="text-3xl font-bold leading-none text-gray-50 dark:text-gray-50">
-              ${Math.round(price)}
+              Rs {Math.round(price)}
             </p>
           </div>
         </CardBody>
