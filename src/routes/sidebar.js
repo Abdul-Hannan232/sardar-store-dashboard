@@ -33,7 +33,7 @@ const sidebar = [
         name: 'User ',
       },
       {
-        path: '/customer/subscription',
+        path: '/customer/subscriptions',
         name: 'Subscription',
       },
     ],

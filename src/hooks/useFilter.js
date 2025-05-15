@@ -16,6 +16,7 @@ const useFilter = (data) => {
   const [searchCoupon, setSearchCoupon] = useState("");
   const [searchOrder, setSearchOrder] = useState("");
   const [categoryType, setCategoryType] = useState("");
+  const [subscriptionType, setSubscriptionType] = useState("");
   const [pending, setPending] = useState([]);
   const [processing, setProcessing] = useState([]);
   const [delivered, setDelivered] = useState([]);
@@ -32,6 +33,7 @@ const useFilter = (data) => {
   const userRef = useRef("");
   const couponRef = useRef("");
   const orderRef = useRef("");
+  const subscriptionRef = useRef("");
   const categoryRef = useRef("");
   dayjs.extend(isBetween);
   dayjs.extend(isToday);
@@ -97,12 +99,11 @@ const useFilter = (data) => {
     if (sortedField === "High") {
       services = services.sort((a, b) => a.price > b.price && -1);
     }
-    // console.log(">>>> ", searchText, services);
-    if (searchText) {
 
+    if (searchText) {
       services = services.filter((search) => 
-        search.title.toLowerCase().includes(searchText.toLowerCase()) ||
-        search.productCode.toLowerCase().includes(searchText.toLowerCase())
+        search.title.toLowerCase().includes(searchText?.toLowerCase()) ||
+        search.productCode.toLowerCase().includes(searchText?.toLowerCase())
       );
     }
 
@@ -111,6 +112,14 @@ const useFilter = (data) => {
       services = services.filter((search) =>
         // search.type.toLowerCase().includes(categoryType.toLowerCase())
         search.name.toLowerCase().includes(categoryType.toLowerCase())
+      );
+    }
+
+    //subscription searching
+    if (subscriptionType) {
+      services = services.filter((search) =>
+        search.email.toLowerCase().includes(subscriptionType.toLowerCase())||
+        search.status.toLowerCase().includes(subscriptionType.toLowerCase())
       );
     }
 
@@ -166,6 +175,7 @@ const useFilter = (data) => {
     searchCoupon,
     searchOrder,
     categoryType,
+    subscriptionType,
     status,
     role,
     time,
@@ -219,6 +229,11 @@ const useFilter = (data) => {
     setCategoryType(categoryRef.current.value);
     console.log("------->>>> ", categoryRef.current.value);
   };
+  const handleSubmiSubscription = (e) => {
+    e.preventDefault();
+    setSubscriptionType(subscriptionRef.current.value);
+    console.log("------->>>> ", subscriptionRef.current.value);
+  };
 
   //table form submit function for search end
 
@@ -250,6 +265,7 @@ const useFilter = (data) => {
     couponRef,
     orderRef,
     categoryRef,
+    subscriptionRef,
     pending,
     processing,
     delivered,
@@ -262,6 +278,7 @@ const useFilter = (data) => {
     setSortedField,
     setStatus,
     categoryType,
+    subscriptionType,
     // setCategoryType,
     setRole,
     setTime,
@@ -275,11 +292,14 @@ const useFilter = (data) => {
     handleSubmitCoupon,
     handleSubmitOrder,
     handleSubmitCategory,
+    handleSubmiSubscription,
     handleOnDrop,
     handleUploadProducts,
     setCategoryType,
+    setSubscriptionType,
     setSearchUser,
     setSearchOrder,
+    
   };
 };
 

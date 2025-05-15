@@ -9,6 +9,11 @@ const Status = ({ status }) => {
         {status === 'Processing' && <Badge>{status}</Badge>}
         {status === 'Delivered' && <Badge type="success">{status}</Badge>}
         {status === 'Cancel' && <Badge type="danger">{status}</Badge>}
+        {status === "active" && <Badge type="success">{status}</Badge>}
+        {status === 'canceled' && <Badge type="danger">{status}</Badge>}
+                {status === 'expired' && <Badge type="warning">{status}</Badge>}
+
+        
       </span>
     </>
   );

@@ -16,7 +16,7 @@ const CustomerTable = ({ customers }) => {
   const handleModalOpen = (id, title) => {
     setCustomerId(id);
     toggleModal();
-    setTitle(title);
+    setTitle(title); 
   };
 
   return (

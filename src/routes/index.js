@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import Faq from '../pages/Faq';
 import Customers from '../pages/Customers';
 import CustomerOrder from '../pages/CustomerOrder';
+import Subscriptions from '../pages/Subscriptions';
 // use lazy for better code splitting
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Products = lazy(() => import('../pages/Products'));
@@ -77,6 +78,10 @@ const routes = [
   {
    path: '/customer-order/:id',
     component: CustomerOrder,
+  },
+  {
+   path: '/customer/subscriptions',
+    component: Subscriptions,
   },
   {
    path: '/settings/banner',

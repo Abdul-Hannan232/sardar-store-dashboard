@@ -12,13 +12,16 @@ import FaqServices from '../../services/FaqServices';
 import OrderServices from '../../services/OrderServices';
 import BannerServices from '../../services/BannerServices';
 import AppPromoServices from '../../services/AppPromoServices';
+import SubscriptionServices from '../../services/SubscriptionServices';
 
 const MainModal = ({ id, title }) => {
   const { isModalOpen, closeModal, setIsUpdate } = useContext(SidebarContext);
   const { setServiceId } = useToggleDrawer();
   const location = useLocation();
 
+  // console.log("dddddddddd ", id, title);
   const handleDelete = () => {
+    
     if (location.pathname === '/products') {
       ProductServices.deleteProduct(id)
         .then((res) => {
@@ -53,6 +56,16 @@ const MainModal = ({ id, title }) => {
     }
     if (location.pathname === '/orders') {
       OrderServices.deleteOrder(id)
+        .then((res) => {
+          setIsUpdate(true);
+          notifySuccess(res.message);
+        })
+        .catch((err) => notifyError(err.message));
+      closeModal();
+      setServiceId();
+    }
+    if (location.pathname === '/customer/subscriptions') {
+      SubscriptionServices.deleteSubscription(id=title)
         .then((res) => {
           setIsUpdate(true);
           notifySuccess(res.message);
