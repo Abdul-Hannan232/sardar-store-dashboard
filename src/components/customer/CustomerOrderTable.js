@@ -13,7 +13,7 @@ const CustomerOrderTable = ({ orders }) => {
           <TableRow key={order.id}>
             <TableCell>
               <span className="font-semibold uppercase text-xs">
-                {order.id}
+                 #on{order.id}
               </span>
             </TableCell>
             <TableCell>

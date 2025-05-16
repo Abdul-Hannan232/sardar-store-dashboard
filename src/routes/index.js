@@ -52,12 +52,12 @@ const routes = [
     component: Category,
   },
   {
-    path: '/faq',
+    path: '/settings/faq',
     component: Faq,
   },
 
   {
-    path: '/faq/:id',
+    path: '/settings/faq/:id',
     component: FaqDetails,
   },
 

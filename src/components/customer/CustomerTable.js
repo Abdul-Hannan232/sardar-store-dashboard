@@ -1,31 +1,32 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import * as dayjs from 'dayjs';
-import { TableCell, TableBody, TableRow } from '@windmill/react-ui';
-import { FiZoomIn, FiTrash2 } from 'react-icons/fi';
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import * as dayjs from "dayjs";
+import { TableCell, TableBody, TableRow } from "@windmill/react-ui";
+import { FiZoomIn, FiTrash2 } from "react-icons/fi";
 
-import Tooltip from '../tooltip/Tooltip';
-import MainModal from '../modal/MainModal';
-import { SidebarContext } from '../../context/SidebarContext';
+import Tooltip from "../tooltip/Tooltip";
+import MainModal from "../modal/MainModal";
+import { SidebarContext } from "../../context/SidebarContext";
+import SelectStatus from "../form/SelectStatus";
+import Status from "../table/Status";
 
 const CustomerTable = ({ customers }) => {
-  const [customerId, setCustomerId] = useState('');
+  const [customerId, setCustomerId] = useState("");
   const { toggleModal } = useContext(SidebarContext);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
 
   const handleModalOpen = (id, title) => {
     setCustomerId(id);
     toggleModal();
-    setTitle(title); 
+    setTitle(title);
   };
 
   return (
     <>
       <MainModal id={customerId} title={title} />
       <TableBody>
-        {/* {console.log(customers)} */}
+        {" "}
         {customers?.map((user) => (
-          
           <TableRow key={user?.id}>
             <TableCell>
               <span className="font-semibold uppercase text-xs">
@@ -37,23 +38,31 @@ const CustomerTable = ({ customers }) => {
             </TableCell>
             <TableCell>
               <span className="text-sm">
-                {dayjs(user.createdAt).format('MMM D, YYYY')}
+                {dayjs(user.createdAt).format("MMM D, YYYY")}
               </span>
             </TableCell>
             <TableCell>
               <span className="text-sm">{user.name}</span>
             </TableCell>
             <TableCell>
-              <span className="text-sm">{user.email}</span>{' '}
+              <span className="text-sm">{user.email}</span>{" "}
             </TableCell>
             <TableCell>
               <span className="text-sm font-medium">{user.phone}</span>
             </TableCell>
 
+            <TableCell className="text-center text-xs">
+              <Status status={user.status} />
+            </TableCell>
+
+            <TableCell className="text-center">
+              <SelectStatus id={user.id} order={user} component="customer" />
+            </TableCell>
+
             <TableCell>
               <div className="flex justify-end text-right">
                 <div className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
-                  {' '}
+                  {" "}
                   <Link to={`/customer-order/${user.id}`}>
                     <Tooltip
                       id="view"
@@ -63,7 +72,7 @@ const CustomerTable = ({ customers }) => {
                     />
                   </Link>
                 </div>
-               
+
                 <div
                   onClick={() => handleModalOpen(user.id, user.name)}
                   className="p-2 cursor-pointer text-gray-400 hover:text-red-600"

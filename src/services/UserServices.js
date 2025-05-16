@@ -7,7 +7,9 @@ const UserServices = {
   getUserById(id) {
     return requests.get(`/user/${id}`);
   },
-
+   updateUserStatus(id, body) {
+    return requests.put(`/user/status/${id}`, body);
+  },
   deleteUser(id) {
     return requests.delete(`/user/${id}`);
   },

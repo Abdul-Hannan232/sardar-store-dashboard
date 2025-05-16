@@ -8,7 +8,7 @@ import {
   FiList,
   FiSettings,
   // FiSlack,
-} from 'react-icons/fi';
+} from "react-icons/fi";
 /**
  * ⚠ These are used just to render the Sidebar!
  * You can include any link here, local or external.
@@ -18,62 +18,61 @@ import {
  */
 const sidebar = [
   {
-    path: '/dashboard', // the url
+    path: "/dashboard", // the url
     icon: FiGrid, // icon
-    name: 'Dashboard', // name that appear in Sidebar
+    name: "Dashboard", // name that appear in Sidebar
   },
   {
-    icon: FiSettings ,
-    name: 'Customer',
+    icon: FiSettings,
+    name: "Customer",
     routes: [
       // submenu
 
       {
-        path: '/customer/user',
-        name: 'User ',
+        path: "/customer/user",
+        name: "User ",
       },
       {
-        path: '/customer/subscriptions',
-        name: 'Subscription',
+        path: "/customer/subscriptions",
+        name: "Subscription",
       },
     ],
   },
- 
+
   {
-    path: '/category',
+    path: "/category",
     icon: FiList,
-    name: 'Categories',
+    name: "Categories",
   },
   {
-    path: '/products',
+    path: "/products",
     icon: FiShoppingBag,
-    name: 'Products',
-  },
- 
-  {
-    path: '/orders',
-    icon: FiCompass,
-    name: 'Orders',
-  },
-  {
-    path: '/faq',
-    icon: FiCompass,
-    name: 'Faq',
+    name: "Products",
   },
 
   {
-    icon: FiSettings ,
-    name: 'Setting',
+    path: "/orders",
+    icon: FiCompass,
+    name: "Orders",
+  },
+
+  {
+    icon: FiSettings,
+    name: "Setting",
     routes: [
       // submenu
-
       {
-        path: '/settings/banner',
-        name: 'Banner ',
+        path: "/settings/app-promotion",
+        name: "App Promotion",
       },
       {
-        path: '/settings/app-promotion',
-        name: 'App Promotion',
+        path: "/settings/banner",
+        name: "Banner ",
+      },
+      {
+        path: "/settings/faq",
+        // icon: FiCompass,
+        name: "Faq",
       },
     ],
   },

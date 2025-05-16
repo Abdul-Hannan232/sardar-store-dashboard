@@ -50,7 +50,7 @@ const FaqTable = ({ faqs }) => {
             <TableCell className="text-right flex justify-end">
               <div className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
                 {" "}
-                <Link to={`/faq/${faq.id}`}>
+                <Link to={`/settings/faq/${faq.id}`}>
                   <Tooltip
                     id="view"
                     Icon={FiZoomIn}

@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { useParams } from "react-router-dom";
 import {
   Table,
   TableHeader,
@@ -7,15 +7,18 @@ import {
   TableFooter,
   TableContainer,
   Pagination,
-} from '@windmill/react-ui';
-import { IoBagHandle } from 'react-icons/io5';
+  CardBody,
+  Card,
+  Input,
+} from "@windmill/react-ui";
+import { IoBagHandle } from "react-icons/io5";
 
-import useAsync from '../hooks/useAsync';
-import useFilter from '../hooks/useFilter';
-import OrderServices from '../services/OrderServices';
-import Loading from '../components/preloader/Loading';
-import PageTitle from '../components/Typography/PageTitle';
-import CustomerOrderTable from '../components/customer/CustomerOrderTable';
+import useAsync from "../hooks/useAsync";
+import useFilter from "../hooks/useFilter";
+import OrderServices from "../services/OrderServices";
+import Loading from "../components/preloader/Loading";
+import PageTitle from "../components/Typography/PageTitle";
+import CustomerOrderTable from "../components/customer/CustomerOrderTable";
 
 const CustomerOrder = () => {
   const { id } = useParams();
@@ -24,8 +27,18 @@ const CustomerOrder = () => {
     OrderServices.getOrderByUser(id)
   );
 
-  const { handleChangePage, totalResults, resultsPerPage, dataTable } =
-    useFilter(data);
+  const {
+    customerOrderRef,
+    serviceData,
+    customerOrderType,
+    setCustomerOrderType,
+    handleSubmitCustomerOrder,
+
+    handleChangePage,
+    totalResults,
+    resultsPerPage,
+    dataTable,
+  } = useFilter(data);
 
   return (
     <>
@@ -45,7 +58,33 @@ const CustomerOrder = () => {
         </div>
       )}
 
-      {data.length > 0 && !error && !loading ? (
+      <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
+        <CardBody>
+          <form
+            onSubmit={handleSubmitCustomerOrder}
+            className="py-3 grid gap-4 lg:gap-6 xl:gap-6 md:flex xl:flex"
+          >
+            <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
+              <Input
+                ref={customerOrderRef}
+                value={customerOrderType}
+                onChange={(e) => setCustomerOrderType(e.target.value)}
+                className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 border-transparent focus:bg-white"
+                type="search"
+                name="search"
+                placeholder="Search by order id"
+              />
+              <button
+                type="submit"
+                className="absolute right-0 top-0 mt-5 mr-1"
+              ></button>
+            </div>
+          </form>
+        </CardBody>
+      </Card>
+
+      {/* {data.length > 0 && !error && !loading ? ( */}
+      {serviceData?.length > 0  && !error && !loading ? (
         <TableContainer className="mb-8">
           <Table>
             <TableHeader>

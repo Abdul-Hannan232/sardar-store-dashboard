@@ -11,6 +11,7 @@ const Status = ({ status }) => {
         {status === 'Cancel' && <Badge type="danger">{status}</Badge>}
         {status === "active" && <Badge type="success">{status}</Badge>}
         {status === 'canceled' && <Badge type="danger">{status}</Badge>}
+        {status === 'block' && <Badge type="danger">{status}</Badge>}
                 {status === 'expired' && <Badge type="warning">{status}</Badge>}
 
         

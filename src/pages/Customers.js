@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Table,
   TableHeader,
@@ -9,15 +9,15 @@ import {
   Card,
   CardBody,
   Pagination,
-} from '@windmill/react-ui';
+} from "@windmill/react-ui";
 
-import useAsync from '../hooks/useAsync';
-import useFilter from '../hooks/useFilter';
-import NotFound from '../components/table/NotFound';
-import UserServices from '../services/UserServices';
-import Loading from '../components/preloader/Loading';
-import PageTitle from '../components/Typography/PageTitle';
-import CustomerTable from '../components/customer/CustomerTable';
+import useAsync from "../hooks/useAsync";
+import useFilter from "../hooks/useFilter";
+import NotFound from "../components/table/NotFound";
+import UserServices from "../services/UserServices";
+import Loading from "../components/preloader/Loading";
+import PageTitle from "../components/Typography/PageTitle";
+import CustomerTable from "../components/customer/CustomerTable";
 
 const Customers = () => {
   const { data, loading } = useAsync(UserServices.getAllUsers);
@@ -47,7 +47,7 @@ const Customers = () => {
               <Input
                 ref={userRef}
                 value={searchUser}
-                onChange={(e)=>setSearchUser(e.target.value)}
+                onChange={(e) => setSearchUser(e.target.value)}
                 className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 border-transparent focus:bg-white"
                 type="search"
                 name="search"
@@ -74,6 +74,9 @@ const Customers = () => {
                 <TableCell>Name</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Phone</TableCell>
+                <TableCell className="text-center">STATUS</TableCell>
+                <TableCell className="text-center">SET STATUS</TableCell>
+
                 <TableCell className="text-right">Actions</TableCell>
               </tr>
             </TableHeader>

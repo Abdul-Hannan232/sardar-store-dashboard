@@ -20,7 +20,7 @@ const OrderTable = ({ orders }) => {
           <TableRow key={order.id}>
             <TableCell>
               <span className="font-semibold uppercase text-xs">
-                #on00{order.id}
+                #on{order.id}
               </span>
             </TableCell>
             {/* <TableCell>

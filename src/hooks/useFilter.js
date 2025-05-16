@@ -16,6 +16,7 @@ const useFilter = (data) => {
   const [searchCoupon, setSearchCoupon] = useState("");
   const [searchOrder, setSearchOrder] = useState("");
   const [categoryType, setCategoryType] = useState("");
+  const [customerOrderType, setCustomerOrderType] = useState("");
   const [subscriptionType, setSubscriptionType] = useState("");
   const [pending, setPending] = useState([]);
   const [processing, setProcessing] = useState([]);
@@ -35,6 +36,7 @@ const useFilter = (data) => {
   const orderRef = useRef("");
   const subscriptionRef = useRef("");
   const categoryRef = useRef("");
+  const customerOrderRef = useRef("");
   dayjs.extend(isBetween);
   dayjs.extend(isToday);
   const location = useLocation();
@@ -114,6 +116,12 @@ const useFilter = (data) => {
         search.name.toLowerCase().includes(categoryType.toLowerCase())
       );
     }
+    //customer Order searching
+    if (customerOrderType) {
+      services = services.filter((search) =>
+        ("#ON"+search.id).toLowerCase().includes(customerOrderType.toLowerCase())
+      );
+    }
 
     //subscription searching
     if (subscriptionType) {
@@ -175,6 +183,7 @@ const useFilter = (data) => {
     searchCoupon,
     searchOrder,
     categoryType,
+    customerOrderType,
     subscriptionType,
     status,
     role,
@@ -229,6 +238,10 @@ const useFilter = (data) => {
     setCategoryType(categoryRef.current.value);
     console.log("------->>>> ", categoryRef.current.value);
   };
+  const handleSubmitCustomerOrder = (e) => {
+    e.preventDefault();
+    setCustomerOrderType(customerOrderRef.current.value);
+  };
   const handleSubmiSubscription = (e) => {
     e.preventDefault();
     setSubscriptionType(subscriptionRef.current.value);
@@ -265,6 +278,7 @@ const useFilter = (data) => {
     couponRef,
     orderRef,
     categoryRef,
+    customerOrderRef,
     subscriptionRef,
     pending,
     processing,
@@ -278,6 +292,7 @@ const useFilter = (data) => {
     setSortedField,
     setStatus,
     categoryType,
+    customerOrderType,
     subscriptionType,
     // setCategoryType,
     setRole,
@@ -292,10 +307,12 @@ const useFilter = (data) => {
     handleSubmitCoupon,
     handleSubmitOrder,
     handleSubmitCategory,
+    handleSubmitCustomerOrder,
     handleSubmiSubscription,
     handleOnDrop,
     handleUploadProducts,
     setCategoryType,
+    setCustomerOrderType,
     setSubscriptionType,
     setSearchUser,
     setSearchOrder,
