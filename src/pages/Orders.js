@@ -73,6 +73,7 @@ const Orders = () => {
                 <TableCell>CUSTOMER EMAIL</TableCell>
                 <TableCell className="text-center">STATUS</TableCell>
                 <TableCell className="text-center">SET STATUS</TableCell>
+                <TableCell className="text-center">View</TableCell>
                 <TableCell className="text-center">Actions</TableCell>
               </tr>
             </TableHeader>

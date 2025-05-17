@@ -61,13 +61,14 @@ const SubscriptionTable = ({ subscriptions }) => {
               <SelectStatus id={user.id} order={user} component="subscription" />
             </TableCell>
            
-            <TableCell>
+            <TableCell  >
                <EditDeleteButton
                 id={user.id}
                 title={user.id}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
-                action="subscriptionAction"
+                // action="subscriptionAction"
+                action={false}
               />
             </TableCell>
           </TableRow>

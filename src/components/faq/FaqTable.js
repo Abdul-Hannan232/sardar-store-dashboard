@@ -67,6 +67,7 @@ const FaqTable = ({ faqs }) => {
                 title={"Faq "+faq.id}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
+                action={true}
               />
             </TableCell>
           </TableRow>

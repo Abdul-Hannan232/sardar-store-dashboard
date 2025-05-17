@@ -82,7 +82,8 @@ const OrderTable = ({ orders }) => {
                 title={order.id}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
-                action="orderAction"
+                // action="orderAction"
+                action={false}
               />
             </TableCell>
           </TableRow>

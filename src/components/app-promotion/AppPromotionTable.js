@@ -99,6 +99,7 @@ const AppPromotionTable = ({ banners }) => {
                 title={banner.title}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
+                action={true}
               />
             </TableCell>
           </TableRow>

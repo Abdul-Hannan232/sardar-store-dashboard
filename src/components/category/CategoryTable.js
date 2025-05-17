@@ -95,6 +95,7 @@ const CategoryTable = ({ categories }) => {
                 title={parent.parent}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
+                action={true}
               />
             </TableCell>
           </TableRow>

@@ -232,6 +232,7 @@ const ProductTable = ({ products }) => {
                 title={product.title}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
+                action={true}
               />
             </TableCell>
           </TableRow>
