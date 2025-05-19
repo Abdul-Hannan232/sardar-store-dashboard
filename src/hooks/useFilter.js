@@ -16,6 +16,7 @@ const useFilter = (data) => {
   const [searchCoupon, setSearchCoupon] = useState("");
   const [searchOrder, setSearchOrder] = useState("");
   const [categoryType, setCategoryType] = useState("");
+  const [reviewType, setReviewType] = useState("");
   const [customerOrderType, setCustomerOrderType] = useState("");
   const [subscriptionType, setSubscriptionType] = useState("");
   const [pending, setPending] = useState([]);
@@ -36,6 +37,7 @@ const useFilter = (data) => {
   const orderRef = useRef("");
   const subscriptionRef = useRef("");
   const categoryRef = useRef("");
+  const reviewRef = useRef("");
   const customerOrderRef = useRef("");
   dayjs.extend(isBetween);
   dayjs.extend(isToday);
@@ -116,6 +118,18 @@ const useFilter = (data) => {
         search.name.toLowerCase().includes(categoryType.toLowerCase())
       );
     }
+
+    if (reviewType) {
+      services = services.filter((search) =>
+        // search.type.toLowerCase().includes(categoryType.toLowerCase())
+        search.user.name.toLowerCase().includes(reviewType.toLowerCase()) ||
+        search.product.title.toLowerCase().includes(reviewType.toLowerCase())||
+        search?.title.toLowerCase().includes(reviewType.toLowerCase())||
+        (search?.ratings+"").toLowerCase().includes(reviewType.toLowerCase())
+      );
+    }
+
+
     //customer Order searching
     if (customerOrderType) {
       services = services.filter((search) =>
@@ -183,6 +197,7 @@ const useFilter = (data) => {
     searchCoupon,
     searchOrder,
     categoryType,
+    reviewType,
     customerOrderType,
     subscriptionType,
     status,
@@ -236,8 +251,13 @@ const useFilter = (data) => {
   const handleSubmitCategory = (e) => {
     e.preventDefault();
     setCategoryType(categoryRef.current.value);
-    console.log("------->>>> ", categoryRef.current.value);
   };
+  const handleSubmitReview = (e) => {
+    e.preventDefault();
+    setReviewType(reviewRef.current.value);
+    console.log("------->>>> ", reviewRef.current.value);
+  };
+
   const handleSubmitCustomerOrder = (e) => {
     e.preventDefault();
     setCustomerOrderType(customerOrderRef.current.value);
@@ -278,6 +298,7 @@ const useFilter = (data) => {
     couponRef,
     orderRef,
     categoryRef,
+    reviewRef,
     customerOrderRef,
     subscriptionRef,
     pending,
@@ -292,6 +313,7 @@ const useFilter = (data) => {
     setSortedField,
     setStatus,
     categoryType,
+    reviewType,
     customerOrderType,
     subscriptionType,
     // setCategoryType,
@@ -307,11 +329,13 @@ const useFilter = (data) => {
     handleSubmitCoupon,
     handleSubmitOrder,
     handleSubmitCategory,
+    handleSubmitReview,
     handleSubmitCustomerOrder,
     handleSubmiSubscription,
     handleOnDrop,
     handleUploadProducts,
     setCategoryType,
+    setReviewType,
     setCustomerOrderType,
     setSubscriptionType,
     setSearchUser,

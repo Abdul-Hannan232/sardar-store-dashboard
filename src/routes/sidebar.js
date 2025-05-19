@@ -49,6 +49,11 @@ const sidebar = [
     icon: FiShoppingBag,
     name: "Products",
   },
+  {
+    path: "/reviews",
+    icon: FiShoppingBag,
+    name: "Reviews",
+  },
 
   {
     path: "/orders",

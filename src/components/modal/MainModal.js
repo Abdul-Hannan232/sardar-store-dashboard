@@ -14,6 +14,7 @@ import BannerServices from '../../services/BannerServices';
 import AppPromoServices from '../../services/AppPromoServices';
 import SubscriptionServices from '../../services/SubscriptionServices';
 import UserServices from '../../services/UserServices';
+import ReviewServices from '../../services/ReviewServices';
 
 const MainModal = ({ id, title }) => {
   const { isModalOpen, closeModal, setIsUpdate } = useContext(SidebarContext);
@@ -34,6 +35,16 @@ const MainModal = ({ id, title }) => {
       setServiceId();
     }
 
+     if (location.pathname === '/reviews') {
+      ReviewServices.deleteReview(id)
+        .then((res) => {
+          setIsUpdate(true);
+          notifySuccess(res.message);
+        })
+        .catch((err) => notifyError(err.message));
+      closeModal();
+      setServiceId();
+    }
     if (location.pathname === '/category') {
       CategoryServices.deleteCategory(id)
         .then((res) => {

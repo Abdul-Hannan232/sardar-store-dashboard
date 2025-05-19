@@ -8,6 +8,7 @@ import CategoryServices from "../../services/CategoryServices";
 import { SidebarContext } from "../../context/SidebarContext";
 import BannerServices from "../../services/BannerServices";
 import AppPromoServices from "../../services/AppPromoServices";
+import ReviewServices from "../../services/ReviewServices";
 
 const ShowHideButton = ({ id, status }) => {
   
@@ -21,6 +22,12 @@ const ShowHideButton = ({ id, status }) => {
       newStatus = "Hide";
     }else if (status === "Hide"){
       newStatus = "Show";
+    }
+    else if(status === "block"){
+      newStatus = "unblock";
+    }
+    else if (status === "unblock"){
+      newStatus = "block";
     }
     else if (status === true){
       newStatus = false;
@@ -61,6 +68,14 @@ const ShowHideButton = ({ id, status }) => {
         })
         .catch((err) => notifyError(err.message));
     }
+     if (location.pathname === "/reviews") {
+      ReviewServices.updateStatus(id, { status: newStatus })
+        .then((res) => {
+          setIsUpdate(true);
+          notifySuccess(res.message);
+        })
+        .catch((err) => notifyError(err.message));
+    }
   };
 
   return (
@@ -69,7 +84,7 @@ const ShowHideButton = ({ id, status }) => {
       className="cursor-pointer  text-3xl text-center"
       onClick={() => handleChangeStatus(id)}
     >
-      {status === "Show" || status ===true ? (
+      {status === "unblock" ||status === "Show" || status ===true ? (
         <BsToggleOn className="base-color " />
       ) : (
         <BsToggleOff className="text-orange-500" />
