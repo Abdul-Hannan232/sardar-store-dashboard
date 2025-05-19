@@ -76,6 +76,8 @@ const Customers = () => {
                 <TableCell>Phone</TableCell>
                 <TableCell className="text-center">STATUS</TableCell>
                 <TableCell className="text-center">SET STATUS</TableCell>
+                <TableCell className="text-center">ISVERIFIED</TableCell>
+                <TableCell className="text-center">UPDATE VERIFICATION</TableCell>
 
                 <TableCell className="text-right">Actions</TableCell>
               </tr>

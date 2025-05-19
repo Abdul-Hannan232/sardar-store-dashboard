@@ -19,7 +19,6 @@ const SelectStatus = ({ id, order, component }) => {
       .catch((err) => notifyError(err.message));
   };
 
-
   const handleChangeSubscriptionStatus = (id, status) => {
     SubscriptionServices.updateSubscriptionStatus(id, { status: status })
       .then((res) => {
@@ -29,16 +28,31 @@ const SelectStatus = ({ id, order, component }) => {
       .catch((err) => notifyError(err.message));
   };
 
-  const handleChangeUserStatus = (id, status) => {
-    UserServices.updateUserStatus(id, { status: status })
+  // const handleChangeUserStatus = (id, status) => {
+  //   UserServices.updateUserStatus(id, { status: status })
+  //     .then((res) => {
+  //       notifySuccess(res.message);
+  //       setIsUpdate(true);
+  //     })
+  //     .catch((err) => notifyError(err.message));
+  // };
+  const handleChangeUserStatus = (id, key, status) => {
+    UserServices.updateUserStatus(id, { [key]: status })
       .then((res) => {
         notifySuccess(res.message);
         setIsUpdate(true);
       })
       .catch((err) => notifyError(err.message));
   };
+  // const handleChangeUserVerification = (id, status) => {
+  //   UserServices.updateUserStatus(id, { status: status })
+  //     .then((res) => {
+  //       notifySuccess(res.message);
+  //       setIsUpdate(true);
+  //     })
+  //     .catch((err) => notifyError(err.message));
+  // };
 
-  
   return (
     <>
       {component === "subscription" ? (
@@ -60,9 +74,25 @@ const SelectStatus = ({ id, order, component }) => {
             Cancel
           </option>
         </Select>
-      ):component === "customer" ? (
-          <Select
-          onChange={(e) => handleChangeUserStatus(id, e.target.value)}
+      ) : component === "customer-verification" ? (
+        <Select
+          onChange={(e) => handleChangeUserStatus(id, "isVerified", e.target.value)}
+          className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"
+        >
+          {/* <option value="status" defaultValue hidden> */}
+          <option value="status" hidden>
+            {order.isVerified ? "verified":"non-verified"}
+          </option>
+          <option defaultValue={order?.isVerified === true} value={true}>
+            Verified
+          </option>
+          <option defaultValue={order?.isVerified === false} value={false}>
+            Non-Verified
+          </option>
+        </Select>
+      ) : component === "customer" ? (
+        <Select
+          onChange={(e) => handleChangeUserStatus(id, "status", e.target.value)}
           className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"
         >
           {/* <option value="status" defaultValue hidden> */}
@@ -75,7 +105,6 @@ const SelectStatus = ({ id, order, component }) => {
           <option defaultValue={order?.status === "block"} value="block">
             Block
           </option>
-         
         </Select>
       ) : (
         <Select

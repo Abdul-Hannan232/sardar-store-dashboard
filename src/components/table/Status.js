@@ -13,6 +13,9 @@ const Status = ({ status }) => {
         {status === 'canceled' && <Badge type="danger">{status}</Badge>}
         {status === 'block' && <Badge type="danger">{status}</Badge>}
                 {status === 'expired' && <Badge type="warning">{status}</Badge>}
+                        {status === "verified" && <Badge type="success">{status}</Badge>}
+        {status === 'non-verified' && <Badge type="danger">{status}</Badge>}
+
 
         
       </span>

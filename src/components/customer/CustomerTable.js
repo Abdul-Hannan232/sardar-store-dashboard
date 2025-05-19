@@ -54,11 +54,17 @@ const CustomerTable = ({ customers }) => {
             <TableCell className="text-center text-xs">
               <Status status={user.status} />
             </TableCell>
-
-            <TableCell className="text-center">
+              <TableCell className="text-center">
               <SelectStatus id={user.id} order={user} component="customer" />
             </TableCell>
 
+            <TableCell className="text-center text-xs">
+              <Status status={user.isVerified ? "verified":"non-verified"} />
+            </TableCell>
+              <TableCell className="text-center">
+              <SelectStatus id={user.id} order={user} component="customer-verification" />
+            </TableCell>
+          
             <TableCell>
               <div className="flex justify-end text-right">
                 <div className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
