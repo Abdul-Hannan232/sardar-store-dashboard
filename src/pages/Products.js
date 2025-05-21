@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import {
   Table,
   TableHeader,
@@ -25,12 +25,11 @@ import MainDrawer from "../components/drawer/MainDrawer";
 import ProductDrawer from "../components/drawer/ProductDrawer";
 import { FaFilterCircleXmark } from "react-icons/fa6";
 
-
 const Products = () => {
   const {
     toggleDrawer,
     currentPage,
-    handleChangePage,
+    // handleChangePage,
     searchText,
     setSearchText,
     category,
@@ -42,7 +41,6 @@ const Products = () => {
     limitData,
   } = useContext(SidebarContext);
 
-
   const { data, loading } = useAsync(
     () =>
       ProductServices.getAllProducts({
@@ -52,32 +50,25 @@ const Products = () => {
         title: searchText,
         price: sortedField,
       }),
-    []
+    [currentPage, limitData, category, searchText, sortedField]
   );
 
+  // function to clear filters
+  const handleClearFilters = () => {
+    // console.log("Clearing filters");
+    setCategory("");
+    setSortedField("");
+    setSearchText(null);
+  };
 
-    // function to clear filters
-    const handleClearFilters = () => {
-      // console.log("Clearing filters");
-      setCategory('')
-      setSortedField('')
-      setSearchText(null)
-    };
-  
-  
-  
-  const { serviceData } = useFilter(
-    data?.products
-  );
+  const { resultsPerPage, serviceData, totalResults, dataTable ,    handleChangePage} = useFilter(data?.products);
 
-
-  return ( 
+  return (
     <>
       <MainDrawer>
         <ProductDrawer />
       </MainDrawer>
 
-      
       <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
         <CardBody>
           <form
@@ -90,7 +81,7 @@ const Products = () => {
                 className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 border-transparent focus:bg-white"
                 type="search"
                 name="search"
-                value={searchText || ''}
+                value={searchText || ""}
                 onChange={(e) => setSearchText(e.target.value)}
                 placeholder="Search by product name"
               />
@@ -135,8 +126,6 @@ const Products = () => {
         </CardBody>
       </Card>
 
-      
-
       {loading ? (
         <Loading loading={loading} />
       ) : serviceData?.length !== 0 ? (
@@ -157,15 +146,15 @@ const Products = () => {
                 <TableCell>Stock</TableCell>
                 <TableCell className="text-center">VIEW</TableCell>
                 <TableCell className="text-center">ENABLES</TableCell>
-                <TableCell className="text-right">Actions</TableCell>
+                <TableCell className="text-center">Actions</TableCell>
               </tr>
             </TableHeader>
-            <ProductTable products={data?.products} />
+            <ProductTable products={dataTable} />
           </Table>
           <TableFooter>
-            <Pagination
-              totalResults={data?.totalDoc}
-              resultsPerPage={15}
+           <Pagination
+              totalResults={totalResults}
+              resultsPerPage={resultsPerPage}
               onChange={handleChangePage}
               label="Product Page Navigation"
             />
@@ -179,4 +168,3 @@ const Products = () => {
 };
 
 export default Products;
-

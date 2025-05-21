@@ -7,14 +7,13 @@ const useToggleDrawer = () => {
   const { toggleDrawer, isDrawerOpen, toggleModal } =
     useContext(SidebarContext);
 
+
   const handleUpdate = (id) => { 
-    // console.log(id);
     setServiceId(id);
     toggleDrawer();
   };
 
   const handleModalOpen = (id, title) => {
-    console.log("handleModalOpen----- >",id, title);
     setServiceId(id);
     toggleModal();
     setTitle(title);

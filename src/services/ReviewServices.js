@@ -1,6 +1,10 @@
 import requests from './httpService';
 
 const ReviewServices= {
+ addReview(body) {
+    return requests.post('/reviews/add', body);
+  },
+
   getAllReviews() {
     return requests.get('/reviews');
   },

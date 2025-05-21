@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   TableCell,
@@ -7,7 +7,7 @@ import {
   // Badge,
   Avatar,
 } from "@windmill/react-ui";
-import { FiZoomIn } from "react-icons/fi";
+import { FiMessageCircle, FiZoomIn } from "react-icons/fi";
 
 import Tooltip from "../tooltip/Tooltip";
 import MainModal from "../modal/MainModal";
@@ -17,9 +17,14 @@ import ShowHideButton from "../table/ShowHideButton";
 import EditDeleteButton from "../table/EditDeleteButton";
 import useToggleDrawer from "../../hooks/useToggleDrawer";
 import { RxCaretDown } from "react-icons/rx";
+import ReviewDrawer from "../drawer/ReviewDrawer";
+import { SidebarContext } from "../../context/SidebarContext";
 
 const ProductTable = ({ products }) => {
-  const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
+  const { toggleDrawer } = useContext(SidebarContext);
+
+  const { title, serviceId,  setServiceId, handleModalOpen, handleUpdate } = useToggleDrawer();
+  const [addReview, setAddReview] = useState(false);
   function truncateText(text, maxLength) {
     if (text.length > maxLength) {
       return text.substring(0, maxLength - 3) + "....";
@@ -28,23 +33,29 @@ const ProductTable = ({ products }) => {
     }
   }
 
+  const handleAddReview = (id) => {
+    setAddReview(true);
+     setServiceId(id);
+    toggleDrawer();
+  };
+
   return (
     <>
+      {addReview ? (
+        <MainDrawer setAddReview={setAddReview} >
+          <ReviewDrawer id={serviceId}  setAddReview={setAddReview} />
+        </MainDrawer>
+      ) : (
+        <MainDrawer>
+          <ProductDrawer id={serviceId} />
+        </MainDrawer>
+      )}
       <MainModal id={serviceId} title={title} />
-      <MainDrawer>
-        <ProductDrawer id={serviceId} />
-      </MainDrawer>
+
       <TableBody>
-        {/* {console.log(products)} */}
+
         {products?.map((product, i) => (
           <TableRow key={i + 1}>
-            {/* {console.log(`''''''''''''''''''' '`, product.title , JSON.parse(product.gallery)[0])} */}
-            {/* <TableCell>
-              <span className="text-xs uppercase font-semibold">
-                {' '}
-                {product.id}
-              </span>
-            </TableCell> */}
             <TableCell>
               <span className="text-xs capitalize font-semibold">
                 {" "}
@@ -108,7 +119,6 @@ const ProductTable = ({ products }) => {
                 {product.delivery ? "Rs " + product.delivery : "Free Delivery"}
               </span>
             </TableCell>
-           
 
             <TableCell>
               {JSON.parse(product.variations) &&
@@ -119,7 +129,7 @@ const ProductTable = ({ products }) => {
                       .sort((a, b) => {
                         const priceA = a.promo_price_pkr || a.price;
                         const priceB = b.promo_price_pkr || b.price;
-                        return priceA - priceB; 
+                        return priceA - priceB;
                       })
                       .map((v, i) => (
                         <option key={i} value={v.size}>
@@ -226,13 +236,15 @@ const ProductTable = ({ products }) => {
               <ShowHideButton id={product.id} status={product.status} />
             </TableCell>
 
-            <TableCell>
+            <TableCell className="d-flex">
               <EditDeleteButton
                 id={product.id}
                 title={product.title}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
+                handleAddReview={handleAddReview}
                 action={true}
+                review={true}
               />
             </TableCell>
           </TableRow>

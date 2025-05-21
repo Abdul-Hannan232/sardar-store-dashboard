@@ -122,10 +122,11 @@ const useFilter = (data) => {
     if (reviewType) {
       services = services.filter((search) =>
         // search.type.toLowerCase().includes(categoryType.toLowerCase())
-        search.user.name.toLowerCase().includes(reviewType.toLowerCase()) ||
-        search.product.title.toLowerCase().includes(reviewType.toLowerCase())||
-        search?.title.toLowerCase().includes(reviewType.toLowerCase())||
-        (search?.ratings+"").toLowerCase().includes(reviewType.toLowerCase())
+        search?.user?.name?.toLowerCase().includes(reviewType.toLowerCase()) ||
+        search?.reviewerName?.toLowerCase().includes(reviewType.toLowerCase()) ||
+        search?.product?.title?.toLowerCase().includes(reviewType.toLowerCase())||
+        search?.title?.toLowerCase().includes(reviewType.toLowerCase())||
+        (search?.ratings+"")?.toLowerCase().includes(reviewType.toLowerCase())
       );
     }
 

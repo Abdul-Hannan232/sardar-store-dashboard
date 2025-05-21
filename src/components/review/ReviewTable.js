@@ -39,7 +39,7 @@ const ReviewsTable = ({ reviews }) => {
         {reviews?.map((review, i) => (
           <TableRow key={i + 1}>
             <TableCell>{review?.id}</TableCell>
-            <TableCell>{review?.user?.name}</TableCell>
+            <TableCell>{review?.user?.name || review.reviewerName}</TableCell>
             <TableCell title={review?.product?.title}>
               {truncateText(review?.product?.title, 30)}
             </TableCell>
