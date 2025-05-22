@@ -16,6 +16,7 @@ const useFilter = (data) => {
   const [searchCoupon, setSearchCoupon] = useState("");
   const [searchOrder, setSearchOrder] = useState("");
   const [categoryType, setCategoryType] = useState("");
+  const [orderType, setOrderType] = useState("");
   const [reviewType, setReviewType] = useState("");
   const [customerOrderType, setCustomerOrderType] = useState("");
   const [subscriptionType, setSubscriptionType] = useState("");
@@ -118,10 +119,16 @@ const useFilter = (data) => {
         search.name.toLowerCase().includes(categoryType.toLowerCase())
       );
     }
+    //order searching
+    if (orderType) {
+      services = services.filter((search) =>
+        // search.type.toLowerCase().includes(categoryType.toLowerCase())
+        ("#ON"+search.id).toLowerCase().includes(orderType.toLowerCase())
+      );
+    }
 
     if (reviewType) {
       services = services.filter((search) =>
-        // search.type.toLowerCase().includes(categoryType.toLowerCase())
         search?.user?.name?.toLowerCase().includes(reviewType.toLowerCase()) ||
         search?.reviewerName?.toLowerCase().includes(reviewType.toLowerCase()) ||
         search?.product?.title?.toLowerCase().includes(reviewType.toLowerCase())||
@@ -198,6 +205,7 @@ const useFilter = (data) => {
     searchCoupon,
     searchOrder,
     categoryType,
+    orderType,
     reviewType,
     customerOrderType,
     subscriptionType,
@@ -246,7 +254,7 @@ const useFilter = (data) => {
 
   const handleSubmitOrder = (e) => {
     e.preventDefault();
-    setSearchOrder(orderRef.current.value);
+    setOrderType(orderRef.current.value);
   };
 
   const handleSubmitCategory = (e) => {
@@ -314,6 +322,7 @@ const useFilter = (data) => {
     setSortedField,
     setStatus,
     categoryType,
+    orderType,
     reviewType,
     customerOrderType,
     subscriptionType,
@@ -336,6 +345,7 @@ const useFilter = (data) => {
     handleOnDrop,
     handleUploadProducts,
     setCategoryType,
+    setOrderType,
     setReviewType,
     setCustomerOrderType,
     setSubscriptionType,

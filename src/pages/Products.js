@@ -24,6 +24,7 @@ import SelectCategory from "../components/form/SelectCategory";
 import MainDrawer from "../components/drawer/MainDrawer";
 import ProductDrawer from "../components/drawer/ProductDrawer";
 import { FaFilterCircleXmark } from "react-icons/fa6";
+import PageTitle from "../components/Typography/PageTitle";
 
 const Products = () => {
   const {
@@ -68,7 +69,7 @@ const Products = () => {
       <MainDrawer>
         <ProductDrawer />
       </MainDrawer>
-
+<PageTitle>Products</PageTitle>
       <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
         <CardBody>
           <form

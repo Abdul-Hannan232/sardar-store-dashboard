@@ -74,10 +74,11 @@ const Customers = () => {
                 <TableCell>Name</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Phone</TableCell>
+                <TableCell className="text-center">ROLE</TableCell>
                 <TableCell className="text-center">STATUS</TableCell>
                 <TableCell className="text-center">SET STATUS</TableCell>
                 <TableCell className="text-center">ISVERIFIED</TableCell>
-                <TableCell className="text-center">UPDATE VERIFICATION</TableCell>
+                {/* <TableCell className="text-center">UPDATE VERIFICATION</TableCell> */}
 
                 <TableCell className="text-right">Actions</TableCell>
               </tr>

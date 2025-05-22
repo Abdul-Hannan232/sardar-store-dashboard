@@ -51,6 +51,11 @@ const CustomerTable = ({ customers }) => {
               <span className="text-sm font-medium">{user.phone}</span>
             </TableCell>
 
+            <TableCell className="text-center">
+              <SelectStatus id={user.id} order={user} component="customer" role={true} />
+            </TableCell>
+
+ 
             <TableCell className="text-center text-xs">
               <Status status={user.status} />
             </TableCell>
@@ -58,9 +63,9 @@ const CustomerTable = ({ customers }) => {
               <SelectStatus id={user.id} order={user} component="customer" />
             </TableCell>
 
-            <TableCell className="text-center text-xs">
+            {/* <TableCell className="text-center text-xs">
               <Status status={user.isVerified ? "verified":"non-verified"} />
-            </TableCell>
+            </TableCell> */}
               <TableCell className="text-center">
               <SelectStatus id={user.id} order={user} component="customer-verification" />
             </TableCell>

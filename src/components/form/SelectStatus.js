@@ -7,7 +7,7 @@ import { SidebarContext } from "../../context/SidebarContext";
 import SubscriptionServices from "../../services/SubscriptionServices";
 import UserServices from "../../services/UserServices";
 
-const SelectStatus = ({ id, order, component }) => {
+const SelectStatus = ({ id, order, component , role}) => {
   const { setIsUpdate } = useContext(SidebarContext);
 
   const handleChangeStatus = (id, status) => {
@@ -90,7 +90,22 @@ const SelectStatus = ({ id, order, component }) => {
             Non-Verified
           </option>
         </Select>
-      ) : component === "customer" ? (
+      )  : component === "customer"  && role? (
+        <Select
+          onChange={(e) => handleChangeUserStatus(id, "status", e.target.value)}
+          className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"
+        >
+          <option value="status" hidden>
+            {order?.role}
+          </option>
+          <option defaultValue={order?.status === "admin"} value="admin">
+            Admin
+          </option>
+          <option defaultValue={order?.status === "user"} value="user">
+            User
+          </option>
+        </Select>
+      ): component === "customer" ? (
         <Select
           onChange={(e) => handleChangeUserStatus(id, "status", e.target.value)}
           className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"
