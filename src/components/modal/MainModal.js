@@ -15,6 +15,7 @@ import AppPromoServices from '../../services/AppPromoServices';
 import SubscriptionServices from '../../services/SubscriptionServices';
 import UserServices from '../../services/UserServices';
 import ReviewServices from '../../services/ReviewServices';
+import AdminServices from '../../services/AdminServices';
 
 const MainModal = ({ id, title }) => {
   const { isModalOpen, closeModal, setIsUpdate } = useContext(SidebarContext);
@@ -108,6 +109,16 @@ const MainModal = ({ id, title }) => {
     }
     if (location.pathname === '/settings/app-promotion') {
       AppPromoServices.deletePromoBanner(id)
+        .then((res) => {
+          setIsUpdate(true);
+          notifySuccess(res.message);
+        })
+        .catch((err) => notifyError(err.message));
+      closeModal();
+      setServiceId();
+    }
+    if (location.pathname === '/settings/admins') {
+      AdminServices.deleteStaff(id)
         .then((res) => {
           setIsUpdate(true);
           notifySuccess(res.message);

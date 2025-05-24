@@ -67,6 +67,11 @@ const sidebar = [
     routes: [
       // submenu
       {
+        path: "/settings/admins",
+        // icon: FiCompass,
+        name: "Admins",
+      },
+      {
         path: "/settings/app-promotion",
         name: "App Promotion",
       },
@@ -79,6 +84,7 @@ const sidebar = [
         // icon: FiCompass,
         name: "Faq",
       },
+      
     ],
   },
 ];

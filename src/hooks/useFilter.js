@@ -16,6 +16,7 @@ const useFilter = (data) => {
   const [searchCoupon, setSearchCoupon] = useState("");
   const [searchOrder, setSearchOrder] = useState("");
   const [categoryType, setCategoryType] = useState("");
+  const [adminyType, setAdminType] = useState("");
   const [orderType, setOrderType] = useState("");
   const [reviewType, setReviewType] = useState("");
   const [customerOrderType, setCustomerOrderType] = useState("");
@@ -38,6 +39,7 @@ const useFilter = (data) => {
   const orderRef = useRef("");
   const subscriptionRef = useRef("");
   const categoryRef = useRef("");
+  const adminRef = useRef("");
   const reviewRef = useRef("");
   const customerOrderRef = useRef("");
   dayjs.extend(isBetween);
@@ -119,10 +121,16 @@ const useFilter = (data) => {
         search.name.toLowerCase().includes(categoryType.toLowerCase())
       );
     }
+    if (adminyType) {
+      services = services.filter((search) =>
+          search.name.toLowerCase().includes(adminyType.toLowerCase()) ||
+          search?.phone?.toLowerCase().includes(adminyType.toLowerCase()) ||
+          search?.email?.toLowerCase().includes(adminyType.toLowerCase())
+      );
+    }
     //order searching
     if (orderType) {
       services = services.filter((search) =>
-        // search.type.toLowerCase().includes(categoryType.toLowerCase())
         ("#ON"+search.id).toLowerCase().includes(orderType.toLowerCase())
       );
     }
@@ -205,6 +213,7 @@ const useFilter = (data) => {
     searchCoupon,
     searchOrder,
     categoryType,
+    adminyType,
     orderType,
     reviewType,
     customerOrderType,
@@ -261,6 +270,10 @@ const useFilter = (data) => {
     e.preventDefault();
     setCategoryType(categoryRef.current.value);
   };
+  const handleSubmitAdmin = (e) => {
+    e.preventDefault();
+    setAdminType(adminRef.current.value);
+  };
   const handleSubmitReview = (e) => {
     e.preventDefault();
     setReviewType(reviewRef.current.value);
@@ -307,6 +320,7 @@ const useFilter = (data) => {
     couponRef,
     orderRef,
     categoryRef,
+    adminRef,
     reviewRef,
     customerOrderRef,
     subscriptionRef,
@@ -322,11 +336,11 @@ const useFilter = (data) => {
     setSortedField,
     setStatus,
     categoryType,
+    adminyType,
     orderType,
     reviewType,
     customerOrderType,
     subscriptionType,
-    // setCategoryType,
     setRole,
     setTime,
     handleChangePage,
@@ -339,12 +353,14 @@ const useFilter = (data) => {
     handleSubmitCoupon,
     handleSubmitOrder,
     handleSubmitCategory,
+    handleSubmitAdmin,
     handleSubmitReview,
     handleSubmitCustomerOrder,
     handleSubmiSubscription,
     handleOnDrop,
     handleUploadProducts,
     setCategoryType,
+    setAdminType,
     setOrderType,
     setReviewType,
     setCustomerOrderType,

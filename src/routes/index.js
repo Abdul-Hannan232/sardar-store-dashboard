@@ -3,6 +3,7 @@ import Faq from '../pages/Faq';
 import Customers from '../pages/Customers';
 import CustomerOrder from '../pages/CustomerOrder';
 import Subscriptions from '../pages/Subscriptions';
+import Staff from '../pages/Staff';
 // use lazy for better code splitting
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Products = lazy(() => import('../pages/Products'));
@@ -100,6 +101,10 @@ const routes = [
   {
     path: '/settings/app-promotion',
     component: AppPromotion,
+  },
+  {
+    path: '/settings/admins',
+    component: Staff,
   },
 ];
 
