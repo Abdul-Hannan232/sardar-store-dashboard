@@ -12,7 +12,7 @@ import { notifyError, notifySuccess } from '../utils/toast';
 const useStaffSubmit = (id) => {
   const { state } = useContext(AdminContext);
   const { adminInfo } = state;
-  const [imageUrl, setImageUrl] = useState('');
+  // const [imageUrl, setImageUrl] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
   const location = useLocation();
   const { isDrawerOpen, closeDrawer, setIsUpdate } = useContext(SidebarContext);
@@ -26,10 +26,10 @@ const useStaffSubmit = (id) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    if (!imageUrl) {
-      notifyError('Image is required!');
-      return;
-    }
+    // if (!imageUrl) {
+    //   notifyError('Image is required!');
+    //   return;
+    // }
     const staffData = {
       name: data.name,
       email: data.email,
@@ -40,7 +40,7 @@ const useStaffSubmit = (id) => {
         ? selectedDate
         : dayjs(new Date()).format('YYYY-MM-DD'),
       role: data.role,
-      image: imageUrl,
+      // image: imageUrl,
     };
 
     if (id) {
@@ -76,7 +76,7 @@ const useStaffSubmit = (id) => {
       setValue('phone');
       setValue('joiningDate');
       setValue('role');
-      setImageUrl('');
+      // setImageUrl('');
       clearErrors('name');
       clearErrors('email');
       clearErrors('password');
@@ -96,8 +96,8 @@ const useStaffSubmit = (id) => {
             setValue('phone', res.phone);
             setValue('joiningDate', res.joiningData);
             setValue('role', res.role);
-            setImageUrl(res.image);
-            setSelectedDate(dayjs(res.joiningData).format('YYYY-MM-DD'));
+            // setImageUrl(res.image);
+            // setSelectedDate(dayjs(res.joiningData).format('YYYY-MM-DD'));
           }
         })
         .catch((err) => {
@@ -116,7 +116,7 @@ const useStaffSubmit = (id) => {
       setValue('email', user.email);
       setValue('phone', user.phone);
       setValue('role', user.role);
-      setImageUrl(user.image);
+      // setImageUrl(user.image);
       setSelectedDate(dayjs(user.joiningData).format('YYYY-MM-DD'));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -127,8 +127,8 @@ const useStaffSubmit = (id) => {
     handleSubmit,
     onSubmit,
     errors,
-    setImageUrl,
-    imageUrl,
+    // setImageUrl,
+    // imageUrl,
     selectedDate,
     setSelectedDate,
   };

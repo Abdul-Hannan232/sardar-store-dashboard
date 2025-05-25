@@ -11,7 +11,6 @@ import EditDeleteButton from "../table/EditDeleteButton";
 const StaffTable = ({ staffs }) => {
     
     const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
-    console.log(">>>>>>>s staffs ", staffs);
   return (
     <> 
       <MainModal id={serviceId} title={title} />
@@ -32,7 +31,9 @@ const StaffTable = ({ staffs }) => {
               </span>
             </TableCell>
             <TableCell>
-              <div className="flex items-center">
+                                <h2 className="text-sm font-medium">{staff.name}</h2>
+
+              {/* <div className="flex items-center">
                 
                 <Avatar
                   className="hidden mr-3 md:block bg-gray-50"
@@ -46,7 +47,7 @@ const StaffTable = ({ staffs }) => {
                 <div>
                   <h2 className="text-sm font-medium">{staff.name}</h2>
                 </div>
-              </div>
+              </div> */}
             </TableCell>
 
             <TableCell>

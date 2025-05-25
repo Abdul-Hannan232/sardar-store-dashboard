@@ -43,12 +43,12 @@ const StaffDrawer = ({ id }) => {
           <CardBody>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="px-6 pt-8 flex-grow scrollbar-hide w-full max-h-full pb-40">
-                <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                {/* <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <LabelArea label="Staff Image" />
                   <div className="col-span-8 sm:col-span-4">
                     <Uploader imageUrl={imageUrl} setImageUrl={setImageUrl} />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <LabelArea label="Name" />
