@@ -21,6 +21,7 @@ const useFilter = (data) => {
   const [reviewType, setReviewType] = useState("");
   const [customerOrderType, setCustomerOrderType] = useState("");
   const [subscriptionType, setSubscriptionType] = useState("");
+  const [messageType, setMessageType] = useState("");
   const [pending, setPending] = useState([]);
   const [processing, setProcessing] = useState([]);
   const [delivered, setDelivered] = useState([]);
@@ -38,6 +39,7 @@ const useFilter = (data) => {
   const couponRef = useRef("");
   const orderRef = useRef("");
   const subscriptionRef = useRef("");
+  const messageRef = useRef("");
   const categoryRef = useRef("");
   const adminRef = useRef("");
   const reviewRef = useRef("");
@@ -160,6 +162,13 @@ const useFilter = (data) => {
         search.status.toLowerCase().includes(subscriptionType.toLowerCase())
       );
     }
+    //message searching
+    if (messageType) {
+      services = services.filter((search) =>
+        search.email.toLowerCase().includes(messageType.toLowerCase())||
+        search.status.toLowerCase().includes(messageType.toLowerCase())
+      );
+    }
 
     //admin Filtering
 
@@ -218,6 +227,7 @@ const useFilter = (data) => {
     reviewType,
     customerOrderType,
     subscriptionType,
+    messageType,
     status,
     role,
     time,
@@ -289,6 +299,10 @@ const useFilter = (data) => {
     setSubscriptionType(subscriptionRef.current.value);
     console.log("------->>>> ", subscriptionRef.current.value);
   };
+  const handleSubmiMessage = (e) => {
+    e.preventDefault();
+    setMessageType(messageRef.current.value);
+  };
 
   //table form submit function for search end
 
@@ -324,6 +338,7 @@ const useFilter = (data) => {
     reviewRef,
     customerOrderRef,
     subscriptionRef,
+    messageRef,
     pending,
     processing,
     delivered,
@@ -341,6 +356,7 @@ const useFilter = (data) => {
     reviewType,
     customerOrderType,
     subscriptionType,
+    messageType,
     setRole,
     setTime,
     handleChangePage,
@@ -357,6 +373,7 @@ const useFilter = (data) => {
     handleSubmitReview,
     handleSubmitCustomerOrder,
     handleSubmiSubscription,
+    handleSubmiMessage,
     handleOnDrop,
     handleUploadProducts,
     setCategoryType,
@@ -365,6 +382,7 @@ const useFilter = (data) => {
     setReviewType,
     setCustomerOrderType,
     setSubscriptionType,
+    setMessageType,
     setSearchUser,
     setSearchOrder,
     

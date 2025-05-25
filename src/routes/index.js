@@ -4,6 +4,7 @@ import Customers from '../pages/Customers';
 import CustomerOrder from '../pages/CustomerOrder';
 import Subscriptions from '../pages/Subscriptions';
 import Staff from '../pages/Staff';
+import Messages from '../pages/Messages';
 // use lazy for better code splitting
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Products = lazy(() => import('../pages/Products'));
@@ -76,6 +77,10 @@ const routes = [
   {
     path: '/order/:id',
     component: OrderInvoice,
+  },
+  {
+    path: '/messages',
+    component: Messages,
   },
   {
    path: '/customer/user',

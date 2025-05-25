@@ -1,10 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
 import * as dayjs from 'dayjs';
 import { TableCell, TableBody, TableRow } from '@windmill/react-ui';
-import { FiZoomIn, FiTrash2 } from 'react-icons/fi';
 
-import Tooltip from '../tooltip/Tooltip';
 import MainModal from '../modal/MainModal';
 import { SidebarContext } from '../../context/SidebarContext';
 import Status from '../table/Status';
@@ -14,7 +11,6 @@ import useToggleDrawer from '../../hooks/useToggleDrawer';
 
 const SubscriptionTable = ({ subscriptions }) => {
   const [customerId, setCustomerId] = useState('');
-  const { toggleModal } = useContext(SidebarContext);
     const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
   
 //   const [title, setTitle] = useState('');

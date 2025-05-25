@@ -6,8 +6,9 @@ import { notifySuccess, notifyError } from "../../utils/toast";
 import { SidebarContext } from "../../context/SidebarContext";
 import SubscriptionServices from "../../services/SubscriptionServices";
 import UserServices from "../../services/UserServices";
+import MessageServices from "../../services/MessageServices";
 
-const SelectStatus = ({ id, order, component , role}) => {
+const SelectStatus = ({ id, order, component, role }) => {
   const { setIsUpdate } = useContext(SidebarContext);
 
   const handleChangeStatus = (id, status) => {
@@ -27,15 +28,15 @@ const SelectStatus = ({ id, order, component , role}) => {
       })
       .catch((err) => notifyError(err.message));
   };
+  const handleChangeMessageStatus = (id, status) => {
+    MessageServices.updateMessageStatus(id, { status: status })
+      .then((res) => {
+        notifySuccess(res.message);
+        setIsUpdate(true);
+      })
+      .catch((err) => notifyError(err.message));
+  };
 
-  // const handleChangeUserStatus = (id, status) => {
-  //   UserServices.updateUserStatus(id, { status: status })
-  //     .then((res) => {
-  //       notifySuccess(res.message);
-  //       setIsUpdate(true);
-  //     })
-  //     .catch((err) => notifyError(err.message));
-  // };
   const handleChangeUserStatus = (id, key, status) => {
     UserServices.updateUserStatus(id, { [key]: status })
       .then((res) => {
@@ -44,14 +45,6 @@ const SelectStatus = ({ id, order, component , role}) => {
       })
       .catch((err) => notifyError(err.message));
   };
-  // const handleChangeUserVerification = (id, status) => {
-  //   UserServices.updateUserStatus(id, { status: status })
-  //     .then((res) => {
-  //       notifySuccess(res.message);
-  //       setIsUpdate(true);
-  //     })
-  //     .catch((err) => notifyError(err.message));
-  // };
 
   return (
     <>
@@ -74,14 +67,34 @@ const SelectStatus = ({ id, order, component , role}) => {
             Cancel
           </option>
         </Select>
+      ) : component === "message" ? (
+        <Select
+          onChange={(e) =>
+            handleChangeMessageStatus(id, e.target.value)
+          }
+          className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"
+        >
+          {" "}
+          <option value="status" hidden>
+            {order.status}
+          </option>
+          <option defaultValue={order?.status === "pending"} value="pending">
+            Pending
+          </option>
+          <option defaultValue={order?.status === "resolved"} value="resolved">
+            Resolved
+          </option>
+        </Select>
       ) : component === "customer-verification" ? (
         <Select
-          onChange={(e) => handleChangeUserStatus(id, "isVerified", e.target.value)}
+          onChange={(e) =>
+            handleChangeUserStatus(id, "isVerified", e.target.value)
+          }
           className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"
         >
           {/* <option value="status" defaultValue hidden> */}
           <option value="status" hidden>
-            {order.isVerified ? "verified":"non-verified"}
+            {order.isVerified ? "verified" : "non-verified"}
           </option>
           <option defaultValue={order?.isVerified === true} value={true}>
             Verified
@@ -90,7 +103,7 @@ const SelectStatus = ({ id, order, component , role}) => {
             Non-Verified
           </option>
         </Select>
-      )  : component === "customer"  && role? (
+      ) : component === "customer" && role ? (
         <Select
           onChange={(e) => handleChangeUserStatus(id, "status", e.target.value)}
           className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"
@@ -105,7 +118,7 @@ const SelectStatus = ({ id, order, component , role}) => {
             User
           </option>
         </Select>
-      ): component === "customer" ? (
+      ) : component === "customer" ? (
         <Select
           onChange={(e) => handleChangeUserStatus(id, "status", e.target.value)}
           className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"

@@ -16,6 +16,7 @@ import SubscriptionServices from '../../services/SubscriptionServices';
 import UserServices from '../../services/UserServices';
 import ReviewServices from '../../services/ReviewServices';
 import AdminServices from '../../services/AdminServices';
+import MessageServices from '../../services/MessageServices';
 
 const MainModal = ({ id, title }) => {
   const { isModalOpen, closeModal, setIsUpdate } = useContext(SidebarContext);
@@ -97,6 +98,17 @@ const MainModal = ({ id, title }) => {
       closeModal();
       setServiceId();
     }
+    if (location.pathname === '/messages') {
+      MessageServices.deleteMessage(id=title)
+        .then((res) => {
+          setIsUpdate(true);
+          notifySuccess(res.message);
+        })
+        .catch((err) => notifyError(err.message));
+      closeModal();
+      setServiceId();
+    }
+
     if (location.pathname === '/settings/banner') {
       BannerServices.deleteBanner(id)
         .then((res) => {

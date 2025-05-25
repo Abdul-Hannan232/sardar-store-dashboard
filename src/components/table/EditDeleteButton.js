@@ -17,7 +17,7 @@ const EditDeleteButton = ({
     <>
       <div className="flex justify-end text-right">
         {/* {action !== "orderAction" || action !== "subscriptionAction" && ( */}
-        {action  &&  (
+          {action  &&  (
           <div
             onClick={() => {
               handleUpdate(id);
