@@ -95,7 +95,7 @@ const Messages = () => {
           </TableFooter>
         </TableContainer>
       ) : (
-        <NotFound title="Subscriptions" />
+        <NotFound title="Messages" />
       )}
     </>
   );
