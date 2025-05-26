@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  TableCell,
-  TableBody,
-  TableRow,
-  Avatar,
-} from "@windmill/react-ui";
+import { TableCell, TableBody, TableRow, Avatar } from "@windmill/react-ui";
 
 import MainModal from "../modal/MainModal";
 import MainDrawer from "../drawer/MainDrawer";
@@ -24,7 +19,7 @@ const AppPromotionTable = ({ banners }) => {
     }
   }
   // console.log("service Id ", serviceId);
-  
+
   return (
     <>
       <MainModal id={serviceId} title={title} />
@@ -61,7 +56,16 @@ const AppPromotionTable = ({ banners }) => {
             </TableCell>
 
             <TableCell>
-             
+              <span className="text-sm font-semibold">{banner.alt || "-"}</span>
+            </TableCell>
+
+            <TableCell>
+              <span className="text-sm font-semibold">
+                {truncateText(banner.product.title, 30) || ""}
+              </span>
+            </TableCell>
+
+            <TableCell>
               <span className="text-xs capitalize font-semibold">
                 {" "}
                 {truncateText(banner.title, 30)}
@@ -84,10 +88,10 @@ const AppPromotionTable = ({ banners }) => {
             </TableCell>
 
             <TableCell>
-              <span className="text-sm font-semibold">{banner.isVisible? "Show":"Hide"}</span>
+              <span className="text-sm font-semibold">
+                {banner.isVisible ? "Show" : "Hide"}
+              </span>
             </TableCell>
-
-            
 
             <TableCell>
               <ShowHideButton id={banner.id} status={banner.isVisible} />
@@ -110,5 +114,3 @@ const AppPromotionTable = ({ banners }) => {
 };
 
 export default React.memo(AppPromotionTable);
-
-

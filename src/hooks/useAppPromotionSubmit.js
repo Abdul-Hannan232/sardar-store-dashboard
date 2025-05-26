@@ -17,7 +17,16 @@ const useAppPromotionSubmit = (id) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = ({ title, startDate, endingDate, isVisible , app_store_url, play_store_url}) => {
+  const onSubmit = ({
+    title,
+    startDate,
+    endingDate,
+    isVisible,
+    app_store_url,
+    play_store_url,
+    alt,
+    productId,
+  }) => {
     if (!imageUrl) {
       notifyError("Image is required!");
       return;
@@ -33,10 +42,8 @@ const useAppPromotionSubmit = (id) => {
       return;
     }
 
-
     /////// end validate Date
 
-    
     const bannerData = {
       title: title,
       startDate: startDate,
@@ -44,7 +51,9 @@ const useAppPromotionSubmit = (id) => {
       isVisible: isVisible,
       image: imageUrl,
       app_store_url,
-      play_store_url
+      play_store_url,
+      alt,
+      productId,
     };
 
     if (id) {
@@ -73,6 +82,8 @@ const useAppPromotionSubmit = (id) => {
       setValue("endingDate");
       setValue("app_store_url");
       setValue("play_store_url");
+      setValue("alt");
+      setValue("productId");
       // setValue("isVisible");
       setImageUrl("");
       clearErrors("title");
@@ -80,6 +91,8 @@ const useAppPromotionSubmit = (id) => {
       clearErrors("endingDate");
       clearErrors("app_store_url");
       clearErrors("play_store_url");
+      clearErrors("alt");
+      clearErrors("productId");
 
       clearErrors("isVisible");
       return;
@@ -105,6 +118,9 @@ const useAppPromotionSubmit = (id) => {
             setValue("isVisible", res.isVisible);
             setValue("app_store_url", res.app_store_url);
             setValue("play_store_url", res.play_store_url);
+            setValue("alt", res.alt);
+            setValue("productId", res.productId);
+
             setImageUrl(res.image);
           }
         })

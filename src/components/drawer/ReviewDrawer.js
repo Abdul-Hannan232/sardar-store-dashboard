@@ -85,9 +85,9 @@ const ReviewDrawer = ({ id , setAddReview}) => {
                   <option value="" hidden>
                     Select User
                   </option>
-                  {data?.map((category) => (
-                    <option key={`${category.id}`} value={category.id}>
-                      {category?.name}
+                  {data?.map((user) => (
+                    <option key={`${user.id}`} value={user.id}>
+                      {user?.name}
                     </option>
                   ))}
                 </Select>

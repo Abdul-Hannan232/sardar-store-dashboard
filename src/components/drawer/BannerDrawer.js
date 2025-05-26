@@ -10,6 +10,10 @@ import useBannerSubmit from "../../hooks/useBannerSubmit";
 import ReactTagInput from "@pathofdev/react-tag-input";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { useEffect, useState } from "react";
+import ProductServices from "../../services/ProductServices";
+import useAsync from "../../hooks/useAsync";
+import { Select } from "@windmill/react-ui";
+
 
 const BannerDrawer = ({ id }) => {
   const {
@@ -23,8 +27,9 @@ const BannerDrawer = ({ id }) => {
     // startDate,
     // endingDate
   } = useBannerSubmit(id);
-const [status,setStatus]= useState("Show")
+  const [status, setStatus] = useState("Show");
 
+  const { data } = useAsync(() => ProductServices._getAllProducts());
 
   // const handleChangeStatus = (id) => {
   //   let newStatus;
@@ -34,12 +39,12 @@ const [status,setStatus]= useState("Show")
   //     newStatus = "Show";
   //   }
   //   setStatus(newStatus);
-    // console.log(newStatus === "Show");
-    
-// }
-// useEffect(()=>{
-//   setValue("isVisible", status === "Show");
-// },[status])
+  // console.log(newStatus === "Show");
+
+  // }
+  // useEffect(()=>{
+  //   setValue("isVisible", status === "Show");
+  // },[status])
 
   return (
     <>
@@ -81,6 +86,43 @@ const [status,setStatus]= useState("Show")
               </div>
             </div>
 
+            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Image Alternate" />
+              <div className="col-span-8 sm:col-span-4">
+                <InputArea
+                  register={register}
+                  label="Image Alternate"
+                  name="alt"
+                  defaultValue=""
+                  type="text"
+                  placeholder="Enter Image alternate text"
+                />
+                <Error errorName={errors.alt} />
+              </div>
+            </div>
+
+                 <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Product" />
+              <div className="col-span-8 sm:col-span-4">
+                <Select
+                  className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 dark:bg-white border-transparent focus:bg-white"
+                  name="pId"
+                  {...register("pId")}
+                >
+                  <option value="" hidden>
+                    Select Product
+                  </option>
+                  {data?.map((product) => (
+                    <option key={`${product.id}`} value={product.id}>
+                      {product?.title}
+                    </option>
+                  ))}
+                </Select>
+                <Error errorName={errors.pId} />
+              </div>
+            </div>
+
+
             {/* Start Date */}
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Start Date" />
@@ -89,7 +131,7 @@ const [status,setStatus]= useState("Show")
                   register={register}
                   label="Start Date"
                   name="startDate"
-                 type="datetime-local"
+                  type="datetime-local"
                   // defaultValue={startDate}
                   placeholder="Select start date"
                 />
@@ -128,7 +170,6 @@ const [status,setStatus]= useState("Show")
               </span>
               </div>
             </div> */}
-            
           </div>
 
           <DrawerButton id={id} title="Banner" />

@@ -86,10 +86,16 @@ const BannerDetails = () => {
               </span>{" "}
               {dayjs(data?.endingDate).format("MMMM D, YYYY")}
             </p>
+            <p className="font-serif font-semibold py-1 text-gray-500 text-sm">
+              <span className="text-gray-700 dark:text-gray-400">
+                Product Title:{" "}
+              </span>{" "}
+              {data?.product?.title}
+            </p>
 
-            {data.image && data.image !== "" && (
+            {data?.image && data.image !== "" && (
               <img
-                src={data.image.replace("5055", "4000")}
+                src={data?.image.replace("5055", "4000")}
                 alt=""
                 className="w-full max-w-[800px] h-auto md:w-[600px] lg:w-[800px] object-cover rounded-lg p-2"
               />

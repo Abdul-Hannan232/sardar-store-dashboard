@@ -17,7 +17,7 @@ const useBannerSubmit = (id) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = ({ title, startDate, endingDate, isVisible }) => {
+  const onSubmit = ({ title, startDate, endingDate, isVisible, alt, pId }) => {
     if (!imageUrl) {
       notifyError("Image is required!");
       return;
@@ -33,7 +33,6 @@ const useBannerSubmit = (id) => {
       return;
     }
 
-
     /////// end validate Date
 
     const bannerData = {
@@ -42,12 +41,13 @@ const useBannerSubmit = (id) => {
       endingDate: endingDate,
       isVisible: isVisible,
       image: imageUrl,
+      alt,
+      pId,
     };
 
-     if (id) {
+    if (id) {
       BannerServices.updateBanner(id, bannerData)
         .then((res) => {
-
           setIsUpdate(true);
           notifySuccess(res.message);
         })
@@ -62,7 +62,6 @@ const useBannerSubmit = (id) => {
         .catch((err) => notifyError(err.message));
       closeDrawer();
     }
-   
   };
 
   useEffect(() => {
@@ -70,30 +69,42 @@ const useBannerSubmit = (id) => {
       setValue("title");
       setValue("startDate");
       setValue("endingDate");
+      setValue("alt");
+      setValue("pId");
       // setValue("isVisible");
       setImageUrl("");
       clearErrors("title");
       clearErrors("startDate");
       clearErrors("endingDate");
       clearErrors("isVisible");
+      setValue("alt");
+      setValue("pId");
+
       return;
     }
     if (id) {
       console.log("hello");
-      
+
       BannerServices.getBannerById(id)
-    
+
         .then((res) => {
           if (res) {
             console.log(res.startDate);
-            
-            const formattedStart = dayjs(res?.startDate).format("YYYY-MM-DDTHH:mm");
-            const formattedEnd = dayjs(res?.endingDate).format("YYYY-MM-DDTHH:mm");
-                      
+
+            const formattedStart = dayjs(res?.startDate).format(
+              "YYYY-MM-DDTHH:mm"
+            );
+            const formattedEnd = dayjs(res?.endingDate).format(
+              "YYYY-MM-DDTHH:mm"
+            );
+
             setValue("startDate", formattedStart);
             setValue("endingDate", formattedEnd);
-            setValue("title",res.title);
-                       setValue("isVisible",res.isVisible);
+            setValue("title", res.title);
+            setValue("isVisible", res.isVisible);
+            setValue("alt", res.alt);
+            setValue("pId", res.pId);
+
             setImageUrl(res.image);
           }
         })
@@ -115,4 +126,3 @@ const useBannerSubmit = (id) => {
 };
 
 export default useBannerSubmit;
-

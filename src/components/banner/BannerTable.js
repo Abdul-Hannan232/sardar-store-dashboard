@@ -63,11 +63,16 @@ const BannerTable = ({ banners }) => {
             </TableCell>
 
             <TableCell>
-              {/* <span className="text-xs capitalize font-semibold">
-                {" "}
-                {product.title}
-              </span> */}
+              <span className="text-sm font-semibold">{banner.alt || "-"}</span>
+            </TableCell>
 
+            <TableCell>
+              <span className="text-sm font-semibold">
+                {truncateText(banner.product.title, 30) || ""}
+              </span>
+            </TableCell>
+
+            <TableCell>
               <span className="text-xs capitalize font-semibold">
                 {" "}
                 {truncateText(banner.title, 30)}
@@ -90,7 +95,9 @@ const BannerTable = ({ banners }) => {
             </TableCell>
 
             <TableCell>
-              <span className="text-sm font-semibold">{banner.isVisible? "Show":"Hide"}</span>
+              <span className="text-sm font-semibold">
+                {banner.isVisible ? "Show" : "Hide"}
+              </span>
             </TableCell>
 
             <TableCell>

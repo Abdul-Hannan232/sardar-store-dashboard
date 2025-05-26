@@ -6,10 +6,15 @@ import LabelArea from "../form/LabelArea";
 import DrawerButton from "../form/DrawerButton";
 import Uploader from "../image-uploader/Uploader";
 import useAppPromotionSubmit from "../../hooks/useAppPromotionSubmit";
+import { Select } from "@windmill/react-ui";
+import ProductServices from "../../services/ProductServices";
+import useAsync from "../../hooks/useAsync";
 // import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 // import {  useState } from "react";
 
 const AppPromoDrawer = ({ id }) => {
+    const { data } = useAsync(()=>ProductServices._getAllProducts())
+
   const {
     register,
     handleSubmit,
@@ -75,6 +80,42 @@ const AppPromoDrawer = ({ id }) => {
               </div>
             </div>
 
+ <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Image Alternate" />
+              <div className="col-span-8 sm:col-span-4">
+                <InputArea
+                  register={register}
+                  label="Image Alternate"
+                  name="alt"
+                  defaultValue=""
+                  type="text"
+                  placeholder="Enter Image alternate text"
+                />
+                <Error errorName={errors.alt} />
+              </div>
+            </div>
+
+              <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Product" />
+              <div className="col-span-8 sm:col-span-4">
+                <Select
+                  className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 dark:bg-white border-transparent focus:bg-white"
+                  name="productId"
+                  {...register("productId")}
+                >
+                  <option value="" hidden>
+                    Select Product
+                  </option>
+                  {data?.map((product) => (
+                    <option key={`${product.id}`} value={product.id}>
+                      {product?.title}
+                    </option>
+                  ))}
+                </Select>
+                <Error errorName={errors.userId} />
+              </div>
+            </div>
+
             {/* Start Date */}
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Start Date" />
@@ -104,7 +145,7 @@ const AppPromoDrawer = ({ id }) => {
                 <Error errorName={errors.endingDate} />
               </div>
             </div>
-
+ 
 
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="App Store URL" />

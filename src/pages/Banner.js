@@ -63,6 +63,8 @@ const Banner = () => {
             <TableHeader>
               <tr>
                 <TableCell>IMAGES</TableCell>
+                <TableCell>ALT</TableCell>
+                <TableCell>PRODUCT</TableCell>
                 <TableCell>TITLE</TableCell>
                 <TableCell>START DATET</TableCell>
                 <TableCell>END DATET</TableCell>

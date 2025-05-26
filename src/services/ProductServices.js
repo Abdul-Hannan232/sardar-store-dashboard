@@ -11,6 +11,12 @@ const ProductServices = {
     );
   },
 
+  // /////////// all products without limit
+  _getAllProducts() {
+    return requests.get('/products/all');
+  },
+ 
+
   getStockOutProducts() {
     return requests.get('/products/stock-out');
   },

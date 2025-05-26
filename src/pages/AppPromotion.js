@@ -72,11 +72,13 @@ const AppPromotion = () => {
         <TableContainer className="mb-8 rounded-b-lg">
           <Table>
             <TableHeader>
-              <tr>
+              <tr> 
                 <TableCell>IMAGES</TableCell>
+                <TableCell>ALT</TableCell>
+                <TableCell>PRODUCT</TableCell>
                 <TableCell>TITLE</TableCell>
                 <TableCell>START DATET</TableCell>
-                <TableCell>END DATET</TableCell>
+                <TableCell>END DATE</TableCell>
                 <TableCell>ISVISIBLE</TableCell>
                 <TableCell className="text-center">ENABLES</TableCell>
                 <TableCell className="text-right">Actions</TableCell>
