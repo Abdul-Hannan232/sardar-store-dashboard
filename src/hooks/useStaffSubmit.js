@@ -39,7 +39,8 @@ const useStaffSubmit = (id) => {
       joiningDate: selectedDate
         ? selectedDate
         : dayjs(new Date()).format('YYYY-MM-DD'),
-      role: data.role,
+      // role: data.role,
+      role: "Admin",
       // image: imageUrl,
     };
 

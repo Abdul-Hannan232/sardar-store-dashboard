@@ -22,6 +22,8 @@ const AppPromoDrawer = ({ id }) => {
     errors,
     imageUrl,
     setImageUrl,
+    smImageUrl,
+    setSmImageUrl
   } = useAppPromotionSubmit(id);
 // const [status,setStatus]= useState("Show")
 
@@ -62,6 +64,13 @@ const AppPromoDrawer = ({ id }) => {
               <LabelArea label="Promo Banner Icon" />
               <div className="col-span-8 sm:col-span-4">
                 <Uploader imageUrl={imageUrl} setImageUrl={setImageUrl} />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Promo Banner Small Icon" />
+              <div className="col-span-8 sm:col-span-4">
+                <Uploader imageUrl={smImageUrl} setImageUrl={setSmImageUrl} />
               </div>
             </div>
 
@@ -170,7 +179,7 @@ const AppPromoDrawer = ({ id }) => {
                   register={register}
                   label="Play Store URL"
                   name="play_store_url"
-                  defaultValue=""
+                  defaultValue="" 
                   required={true}
                   type="text"
                   placeholder="Enter Play Store URL"

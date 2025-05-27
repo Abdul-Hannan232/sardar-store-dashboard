@@ -134,7 +134,7 @@ const Staff = () => {
                 <TableCell>Email</TableCell>
                 <TableCell>Contact</TableCell>
                 <TableCell>Joining Date</TableCell>
-                <TableCell>Role</TableCell>
+                {/* <TableCell>Role</TableCell> */}
  
                 <TableCell className="text-right">Actions</TableCell>
               </tr>

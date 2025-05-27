@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 
 const useBannerSubmit = (id) => {
   const [imageUrl, setImageUrl] = useState("");
+  const [smImageUrl, setSmImageUrl] = useState("");
   const { isDrawerOpen, closeDrawer, setIsUpdate } = useContext(SidebarContext);
 
   const {
@@ -20,6 +21,10 @@ const useBannerSubmit = (id) => {
   const onSubmit = ({ title, startDate, endingDate, isVisible, alt, pId }) => {
     if (!imageUrl) {
       notifyError("Image is required!");
+      return;
+    }
+    if (!smImageUrl) {
+      notifyError("Banner Small Image is required!");
       return;
     }
 
@@ -41,6 +46,7 @@ const useBannerSubmit = (id) => {
       endingDate: endingDate,
       isVisible: isVisible,
       image: imageUrl,
+      smImage: smImageUrl,
       alt,
       pId,
     };
@@ -73,6 +79,7 @@ const useBannerSubmit = (id) => {
       setValue("pId");
       // setValue("isVisible");
       setImageUrl("");
+      setSmImageUrl("");
       clearErrors("title");
       clearErrors("startDate");
       clearErrors("endingDate");
@@ -106,6 +113,7 @@ const useBannerSubmit = (id) => {
             setValue("pId", res.pId);
 
             setImageUrl(res.image);
+            setSmImageUrl(res.smImage);
           }
         })
         .catch((err) => {
@@ -120,8 +128,10 @@ const useBannerSubmit = (id) => {
     onSubmit,
     errors,
     imageUrl,
+    smImageUrl,
     setValue,
     setImageUrl,
+    setSmImageUrl,
   };
 };
 

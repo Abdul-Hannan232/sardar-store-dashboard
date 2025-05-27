@@ -62,9 +62,9 @@ const StaffTable = ({ staffs }) => {
                 {dayjs(staff.joiningData).format("MMM D, YYYY")}
               </span>
             </TableCell>
-            <TableCell>
+            {/* <TableCell>
               <span className="text-sm font-semibold">{staff.role}</span>
-            </TableCell>
+            </TableCell> */}
             <TableCell>
               <EditDeleteButton
                 id={staff.id}

@@ -8,6 +8,7 @@ import EditDeleteButton from "../table/EditDeleteButton";
 import useToggleDrawer from "../../hooks/useToggleDrawer";
 import dayjs from "dayjs";
 import AppPromoDrawer from "../drawer/AppPromotionDrawer";
+import Plcaeholder from "../../assets/img/forgot-password-office.jpeg";
 
 const AppPromotionTable = ({ banners }) => {
   const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
@@ -45,6 +46,31 @@ const AppPromotionTable = ({ banners }) => {
                     size="large"
                     className="hidden  mr-2 md:block bg-gray-50 shadow-none"
                     src={JSON.parse(banner.gallery)[0].replace("5055", "4000")}
+                    //  src={JSON.parse(product.gallery)[0]}
+                    alt={banner.title}
+                  />
+                )}
+                {/* <div>
+                  <h2 className="text-sm font-medium">{product.title}</h2>
+                </div> */}
+              </div>
+            </TableCell>
+
+            <TableCell>
+              <div className="flex items-center">
+                {banner.smImage && banner.smImage !== "" ? (
+                  <Avatar
+                    size="large"
+                    className="hidden  mr-2 md:block bg-gray-50 shadow-none"
+                    // src={product.image}
+                    src={banner.smImage.replace("5055", "4000")}
+                    alt={banner.title}
+                  />
+                ) : (
+                  <Avatar
+                    size="large"
+                    className="hidden  mr-2 md:block bg-gray-50 shadow-none"
+                    src={Plcaeholder}
                     //  src={JSON.parse(product.gallery)[0]}
                     alt={banner.title}
                   />

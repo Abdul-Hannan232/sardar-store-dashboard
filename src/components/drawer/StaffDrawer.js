@@ -165,13 +165,14 @@ const StaffDrawer = ({ id }) => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+                {/* <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                   <LabelArea label="Staff Role" />
                   <div className="col-span-8 sm:col-span-4">
                     <SelectRole register={register} label="Role" name="role" />
                     <Error errorName={errors.role} />
                   </div>
-                </div>
+                </div> */}
+                
               </div>
 
               <DrawerButton id={id} title="Staff" />

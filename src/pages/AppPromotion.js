@@ -74,6 +74,7 @@ const AppPromotion = () => {
             <TableHeader>
               <tr> 
                 <TableCell>IMAGES</TableCell>
+                <TableCell>SM-IMAGES</TableCell>
                 <TableCell>ALT</TableCell>
                 <TableCell>PRODUCT</TableCell>
                 <TableCell>TITLE</TableCell>

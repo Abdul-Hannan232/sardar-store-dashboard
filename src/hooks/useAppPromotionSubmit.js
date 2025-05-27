@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 
 const useAppPromotionSubmit = (id) => {
   const [imageUrl, setImageUrl] = useState("");
+  const [smImageUrl, setSmImageUrl] = useState("");
   const { isDrawerOpen, closeDrawer, setIsUpdate } = useContext(SidebarContext);
 
   const {
@@ -31,6 +32,10 @@ const useAppPromotionSubmit = (id) => {
       notifyError("Image is required!");
       return;
     }
+    if (!smImageUrl) {
+      notifyError("Banner Small Image is required!");
+      return;
+    }
 
     /////// validate Date
 
@@ -50,6 +55,7 @@ const useAppPromotionSubmit = (id) => {
       endingDate: endingDate,
       isVisible: isVisible,
       image: imageUrl,
+      smImage: smImageUrl,
       app_store_url,
       play_store_url,
       alt,
@@ -86,6 +92,7 @@ const useAppPromotionSubmit = (id) => {
       setValue("productId");
       // setValue("isVisible");
       setImageUrl("");
+      setSmImageUrl("");
       clearErrors("title");
       clearErrors("startDate");
       clearErrors("endingDate");
@@ -122,6 +129,7 @@ const useAppPromotionSubmit = (id) => {
             setValue("productId", res.productId);
 
             setImageUrl(res.image);
+            setSmImageUrl(res.smImage);
           }
         })
         .catch((err) => {
@@ -136,8 +144,10 @@ const useAppPromotionSubmit = (id) => {
     onSubmit,
     errors,
     imageUrl,
+    smImageUrl,
     setValue,
     setImageUrl,
+  setSmImageUrl
   };
 };
 
