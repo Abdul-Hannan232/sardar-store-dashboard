@@ -51,9 +51,9 @@ const CustomerTable = ({ customers }) => {
               <span className="text-sm font-medium">{user.phone}</span>
             </TableCell>
 
-            <TableCell className="text-center">
+            {/* <TableCell className="text-center">
               <SelectStatus id={user.id} order={user} component="customer" role={true} />
-            </TableCell>
+            </TableCell> */}
 
  
             <TableCell className="text-center text-xs">
